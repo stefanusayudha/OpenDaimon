@@ -1,5 +1,6 @@
 package com.singularityindonesia.opendaimon.ui.home
 
+import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -21,6 +22,14 @@ fun HomeActivity(
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState { 4 }
 
+    BackHandler(
+        enabled = pagerState.currentPage != 0
+    ) {
+        scope.launch {
+            pagerState.animateScrollToPage(pagerState.currentPage - 1)
+        }
+    }
+
     Scaffold(
         modifier = Modifier
             .statusBarsPadding()
@@ -30,15 +39,10 @@ fun HomeActivity(
             if (pagerState.currentPage < 1) return@Scaffold
             HeaderPage(
                 titleText = when (pagerState.currentPage) {
-                    1 -> "Control"
-                    2 -> "Logs"
+                    1 -> "Status"
+                    2 -> "Control"
                     3 -> "About"
                     else -> ""
-                },
-                backAction = {
-                    scope.launch {
-                        pagerState.animateScrollToPage(pagerState.currentPage - 1)
-                    }
                 }
             )
         }
@@ -49,17 +53,17 @@ fun HomeActivity(
         ) { index ->
             when (index) {
                 0 -> GlyphPane()
-                1 -> ControlPane(
+                1 -> StatusPane()
+                2 -> ControlPane(
                     goToScanProtocol = goToScanProtocol
                 )
 
-                2 -> LogsPane()
                 3 -> AboutPane()
             }
         }
 
         BackToStartOverLay(
-            showButton = pagerState.currentPage > 1
+            showButton = pagerState.currentPage > 0
         ) {
             scope.launch {
                 pagerState.animateScrollToPage(0)

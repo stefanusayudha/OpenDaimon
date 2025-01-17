@@ -20,6 +20,7 @@ android {
         buildConfigField("String", "APP_NAME", "\"Open Daimon\"")
         buildConfigField("String", "CODE_NAME", "\"Lilith\"")
         buildConfigField("String","COMPANY_NAME", "\"Singularity Indonesia\"")
+        buildConfigField("String", "COMUNITY_URL", "\"https://discord.com/channels/916882193366806590/1329775579917975644\"")
     }
 
     buildTypes {
