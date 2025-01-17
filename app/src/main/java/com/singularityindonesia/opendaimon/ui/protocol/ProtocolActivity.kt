@@ -5,11 +5,9 @@ import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
 import androidx.compose.foundation.layout.systemBarsPadding
 import androidx.compose.material3.Scaffold
-import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
-import androidx.navigation.compose.NavHost
-import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import com.singularityindonesia.opendaimon.ui.component.HeaderPage
 
@@ -19,6 +17,13 @@ fun ProtocolActivity(
     returnBack: () -> Unit
 ) {
     val controller = rememberNavController()
+    val pageTitle = remember(protocolId) {
+        "Protocol${
+            protocolId.takeIf { it.isNotBlank() }
+                ?.let { "/${it.replaceFirstChar { c -> c.uppercaseChar() }}" }
+        }"
+    }
+
     Scaffold(
         modifier = Modifier
             .statusBarsPadding()
@@ -27,31 +32,16 @@ fun ProtocolActivity(
         topBar = {
             HeaderPage(
                 backAction = {
-                    controller.popBackStack().takeIf { it } ?: returnBack.invoke()
+                    if (!controller.popBackStack()) returnBack.invoke()
                 },
-                titleText = "Protocol${
-                    protocolId.takeIf { it.isNotBlank() }?.let { "/${it.replaceFirstChar { c -> c.uppercaseChar() }}" }
-                }"
+                titleText = pageTitle
             )
         }
     ) { padding ->
-        NavHost(
+        ProtocolPlot(
             modifier = Modifier.padding(padding),
-            navController = controller,
-            startDestination = protocolId.takeIf { it.isNotBlank() } ?: "home"
-        ) {
-
-            composable(
-                route = "home"
-            ) {
-                Text("Protocol Home Page")
-            }
-
-            composable(
-                route = "scan"
-            ) {
-                ScanProtocolPane()
-            }
-        }
+            protocolId = protocolId,
+            controller = controller,
+        )
     }
 }
