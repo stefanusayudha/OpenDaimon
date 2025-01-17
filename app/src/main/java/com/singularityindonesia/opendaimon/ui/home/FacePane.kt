@@ -1,20 +1,20 @@
-package com.singularityindonesia.opendaimon.ui.pane
+package com.singularityindonesia.opendaimon.ui.home
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 
 @Composable
-fun ControlPane(
+fun FacePane(
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .then(modifier)
     ) {
-
+        Text("Face")
     }
 }

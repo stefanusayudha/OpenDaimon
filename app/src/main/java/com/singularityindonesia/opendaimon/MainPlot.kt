@@ -1,11 +1,14 @@
 package com.singularityindonesia.opendaimon
 
 import androidx.compose.runtime.Composable
+import androidx.navigation.NavType
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
-import com.singularityindonesia.opendaimon.ui.activity.HomeActivity
-import com.singularityindonesia.opendaimon.ui.activity.SplashActivity
+import androidx.navigation.navArgument
+import com.singularityindonesia.opendaimon.ui.home.HomeActivity
+import com.singularityindonesia.opendaimon.ui.protocol.ProtocolActivity
+import com.singularityindonesia.opendaimon.ui.splash.SplashActivity
 
 @Composable
 fun MainPlot() {
@@ -26,7 +29,26 @@ fun MainPlot() {
         composable(
             route = "home"
         ) {
-            HomeActivity()
+            HomeActivity(
+                goToScanProtocol = {
+                    controller.navigate("protocol/scan")
+                }
+            )
+        }
+        composable(
+            route = "protocol/{protocolId}",
+            arguments = listOf(
+                navArgument("protocolId") { type = NavType.StringType }
+            )
+        ) { backStackEntry ->
+            val protocolId = backStackEntry.arguments?.getString("protocolId")
+
+            ProtocolActivity(
+                protocolId = protocolId.orEmpty(),
+                returnBack = {
+                    controller.popBackStack()
+                }
+            )
         }
     }
 }

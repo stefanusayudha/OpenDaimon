@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.ui.activity
+package com.singularityindonesia.opendaimon.ui.home
 
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -11,15 +11,15 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import com.singularityindonesia.opendaimon.ui.component.HeaderPage
-import com.singularityindonesia.opendaimon.ui.pane.ControlPane
-import com.singularityindonesia.opendaimon.ui.pane.FacePane
-import com.singularityindonesia.opendaimon.ui.pane.LogsPane
+import com.singularityindonesia.opendaimon.ui.overlay.BackToStartOverLay
 import kotlinx.coroutines.launch
 
 @Composable
-fun HomeActivity() {
+fun HomeActivity(
+    goToScanProtocol: () -> Unit
+) {
     val scope = rememberCoroutineScope()
-    val pagerState = rememberPagerState { 3 }
+    val pagerState = rememberPagerState { 4 }
 
     Scaffold(
         modifier = Modifier
@@ -32,6 +32,7 @@ fun HomeActivity() {
                 titleText = when (pagerState.currentPage) {
                     1 -> "Control"
                     2 -> "Logs"
+                    3 -> "About"
                     else -> ""
                 },
                 backAction = {
@@ -47,9 +48,21 @@ fun HomeActivity() {
             state = pagerState
         ) { index ->
             when (index) {
-                0 -> FacePane()
-                1 -> ControlPane()
+                0 -> GlyphPane()
+                1 -> ControlPane(
+                    goToScanProtocol = goToScanProtocol
+                )
+
                 2 -> LogsPane()
+                3 -> AboutPane()
+            }
+        }
+
+        BackToStartOverLay(
+            showButton = pagerState.currentPage > 1
+        ) {
+            scope.launch {
+                pagerState.animateScrollToPage(0)
             }
         }
     }
