@@ -27,7 +27,7 @@ class BoltzmannMachine(
         }
     }
 
-    private fun sigmoid(x: Float): Float {
+    fun sigmoid(x: Float): Float {
         return 1.0f / (1.0f + exp(-x))
     }
 
