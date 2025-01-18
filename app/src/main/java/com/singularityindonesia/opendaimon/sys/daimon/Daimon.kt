@@ -25,14 +25,4 @@ class HormoneGlands(
     val dopamineGland = DopamineGland(coroutineScope)
     val endorphinGland = EndorphinGland(coroutineScope)
     val serotoninGland = SerotoninGland(coroutineScope)
-
-    val stream = snapshotFlow {
-        val adrenalinValue = adrenalGland.hormoneLevel.value
-        val cortisolValue = cortisolGland.hormoneLevel.value
-        val dopamineValue = dopamineGland.hormoneLevel.value
-        val endorphinValue = endorphinGland.hormoneLevel.value
-        val serotoninValue = serotoninGland.hormoneLevel.value
-
-        arrayOf(adrenalinValue, cortisolValue, dopamineValue, endorphinValue, serotoninValue)
-    }
 }
