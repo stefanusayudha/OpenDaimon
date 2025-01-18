@@ -59,6 +59,8 @@ interface Sensor3D : SensorEventListener {
 
         Text(modifier = modifier, text = display)
     }
+
+    fun stop()
 }
 
 fun sensor3d(
@@ -143,6 +145,10 @@ fun sensor3d(
 
                 else -> {}
             }
+        }
+
+        override fun stop() {
+            sensorManager?.unregisterListener(this)
         }
 
         init {
