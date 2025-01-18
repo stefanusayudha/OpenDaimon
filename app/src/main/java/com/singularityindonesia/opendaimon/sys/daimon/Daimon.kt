@@ -1,10 +1,10 @@
-package com.singularityindonesia.opendaimon.daimon
+package com.singularityindonesia.opendaimon.sys.daimon
 
-import com.singularityindonesia.opendaimon.daimon.hormone.AdrenalGland
-import com.singularityindonesia.opendaimon.daimon.hormone.CortisolGland
-import com.singularityindonesia.opendaimon.daimon.hormone.DopamineGland
-import com.singularityindonesia.opendaimon.daimon.hormone.EndorphinGland
-import com.singularityindonesia.opendaimon.daimon.hormone.SerotoninGland
+import com.singularityindonesia.opendaimon.sys.daimon.hormone.AdrenalGland
+import com.singularityindonesia.opendaimon.sys.daimon.hormone.CortisolGland
+import com.singularityindonesia.opendaimon.sys.daimon.hormone.DopamineGland
+import com.singularityindonesia.opendaimon.sys.daimon.hormone.EndorphinGland
+import com.singularityindonesia.opendaimon.sys.daimon.hormone.SerotoninGland
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob

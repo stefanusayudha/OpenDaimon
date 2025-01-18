@@ -1,9 +1,9 @@
-package com.singularityindonesia.opendaimon.daimon.hormone
+package com.singularityindonesia.opendaimon.sys.daimon.hormone
 
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
 
-class DopamineGland(
+class CortisolGland(
     private val scope: CoroutineScope
 ) {
     val hormoneLevel = MutableStateFlow(0f)
