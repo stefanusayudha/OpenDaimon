@@ -16,6 +16,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.text.style.TextOverflow
+import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
@@ -56,4 +57,13 @@ fun HeaderPage(
             modifier = Modifier.width(16.dp)
         )
     }
+}
+
+@Preview
+@Composable
+private fun Preview() {
+    HeaderPage(
+        backAction = {},
+        titleText = "Title"
+    )
 }
