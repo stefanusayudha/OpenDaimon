@@ -28,6 +28,12 @@ class Sensors(
     // todo: adjust the delay on demand
     val geoRotation = GeoMagnetRotationSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
 
+    // todo: adjust the delay on demand
+    val proximity = ProximitySensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+
+    // todo: adjust the delay on demand
+    val light = LightSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+
 }
 
 // region Compose Provider

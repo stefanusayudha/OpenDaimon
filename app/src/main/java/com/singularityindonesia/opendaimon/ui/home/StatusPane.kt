@@ -22,6 +22,8 @@ fun StatusPane(
     val linearAcceleration = sensors.linearAcceleration
     val rotation = sensors.rotation
     val geoRotation = sensors.geoRotation
+    val proximity = sensors.proximity
+    val light = sensors.light
 
     LazyColumn(
         modifier = Modifier
@@ -105,6 +107,34 @@ fun StatusPane(
                 },
                 trailingContent = {
                     linearAcceleration.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Proximity")
+                },
+                trailingContent = {
+                    proximity.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Light")
+                },
+                trailingContent = {
+                    light.Display(
                         modifier = Modifier,
                         alignment = Alignment.End
                     )
