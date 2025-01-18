@@ -1,21 +1,116 @@
 package com.singularityindonesia.opendaimon.ui.home
 
-import androidx.compose.foundation.layout.Column
+import android.graphics.Paint.Align
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.lazy.LazyColumn
+import androidx.compose.material3.ListItem
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.singularityindonesia.opendaimon.lib.sensor.LocalSensors
 
 @Composable
 fun StatusPane(
     modifier: Modifier = Modifier
 ) {
-    Column(
+    val sensors = LocalSensors.current
+    val accelerometer = sensors.accelerometer
+    val gravity = sensors.gravity
+    val gyroscope = sensors.gyroscope
+    val linearAcceleration = sensors.linearAcceleration
+    val rotation = sensors.rotation
+    val geoRotation = sensors.geoRotation
+
+    LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .then(modifier)
     ) {
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Accelerometer")
+                },
+                trailingContent = {
+                    accelerometer.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
 
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Gravity")
+                },
+                trailingContent = {
+                    gravity.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Gyro")
+                },
+                trailingContent = {
+                    gyroscope.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Rotation")
+                },
+                trailingContent = {
+                    rotation.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Geo Rotation")
+                },
+                trailingContent = {
+                    geoRotation.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Linear Accel")
+                },
+                trailingContent = {
+                    linearAcceleration.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
     }
 }
 

@@ -15,7 +15,7 @@ fun MainPlot() {
     val controller = rememberNavController()
     NavHost(
         navController = controller,
-        startDestination = "splash"
+        startDestination = "home"
     ) {
         composable(
             route = "splash"

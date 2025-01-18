@@ -1,28 +1,23 @@
 package com.singularityindonesia.opendaimon.sys.daimon
 
-import androidx.compose.runtime.snapshotFlow
-import com.singularityindonesia.opendaimon.lib.BoltzmannMachine
-import com.singularityindonesia.opendaimon.sys.daimon.hormone.AdrenalGland
-import com.singularityindonesia.opendaimon.sys.daimon.hormone.CortisolGland
-import com.singularityindonesia.opendaimon.sys.daimon.hormone.DopamineGland
-import com.singularityindonesia.opendaimon.sys.daimon.hormone.EndorphinGland
-import com.singularityindonesia.opendaimon.sys.daimon.hormone.SerotoninGland
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.flow.Flow
 
 class Daimon {
     val coroutineScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
-    val boltzmannMachine = BoltzmannMachine(5,10)
-    val hormoneGlands = HormoneGlands(coroutineScope)
-}
+    val input = mutableListOf<Float>()
+    val understanding = mutableListOf<Float>()
+    val knowledge = mutableListOf<Float>()
+    val wisdom = mutableListOf<Float>()
+    val kindness = mutableListOf<Float>()
+    val discipline = mutableListOf<Float>()
+    val compassion = mutableListOf<Float>()
+    val ambition = mutableListOf<Float>()
+    val humility = mutableListOf<Float>()
+    val bonding = mutableListOf<Float>()
+    val dignity = mutableListOf<Float>()
 
-class HormoneGlands(
-    coroutineScope: CoroutineScope
-) {
-    val adrenalGland = AdrenalGland(coroutineScope)
-    val cortisolGland = CortisolGland(coroutineScope)
-    val dopamineGland = DopamineGland(coroutineScope)
-    val endorphinGland = EndorphinGland(coroutineScope)
-    val serotoninGland = SerotoninGland(coroutineScope)
+    val instruction: Flow<UShort> = TODO()
 }
