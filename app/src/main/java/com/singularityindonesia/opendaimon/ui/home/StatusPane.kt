@@ -1,6 +1,5 @@
 package com.singularityindonesia.opendaimon.ui.home
 
-import android.graphics.Paint.Align
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ListItem
@@ -24,6 +23,9 @@ fun StatusPane(
     val geoRotation = sensors.geoRotation
     val proximity = sensors.proximity
     val light = sensors.light
+    val ambienceTemp = sensors.ambienceTemp
+    val pressure = sensors.pressure
+    val humidity = sensors.humidity
 
     LazyColumn(
         modifier = Modifier
@@ -135,6 +137,48 @@ fun StatusPane(
                 },
                 trailingContent = {
                     light.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Ambience Temp")
+                },
+                trailingContent = {
+                    ambienceTemp.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Pressure")
+                },
+                trailingContent = {
+                    pressure.Display(
+                        modifier = Modifier,
+                        alignment = Alignment.End
+                    )
+                },
+            )
+        }
+
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Humidity")
+                },
+                trailingContent = {
+                    humidity.Display(
                         modifier = Modifier,
                         alignment = Alignment.End
                     )

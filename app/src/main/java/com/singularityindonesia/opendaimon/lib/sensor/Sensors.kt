@@ -34,6 +34,15 @@ class Sensors(
     // todo: adjust the delay on demand
     val light = LightSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
 
+    // todo: adjust the delay on demand
+    val ambienceTemp = AmbienceTemperatureSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+
+    // todo: adjust the delay on demand
+    val pressure = PressureSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+
+    // todo: adjust the delay on demand
+    val humidity = HumiditySensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+
 }
 
 // region Compose Provider
