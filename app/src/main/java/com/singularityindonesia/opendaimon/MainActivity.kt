@@ -7,7 +7,7 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.singularityindonesia.opendaimon.sys.lib.sensor.ProvideSensors
-import com.singularityindonesia.opendaimon.sys.lib.sensor.Sensors
+import com.singularityindonesia.opendaimon.sys.daimon.lib.Sensors
 import com.singularityindonesia.opendaimon.shell.theme.OpenDaimonTheme
 
 class MainActivity : ComponentActivity() {

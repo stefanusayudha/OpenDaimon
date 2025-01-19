@@ -1,9 +1,17 @@
-package com.singularityindonesia.opendaimon.sys.lib.sensor
+package com.singularityindonesia.opendaimon.sys.daimon.lib
 
 import android.hardware.SensorManager
-import androidx.compose.runtime.Composable
-import androidx.compose.runtime.CompositionLocalProvider
-import androidx.compose.runtime.staticCompositionLocalOf
+import com.singularityindonesia.opendaimon.sys.lib.sensor.Accelerometer
+import com.singularityindonesia.opendaimon.sys.lib.sensor.AmbienceTemperatureSensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.GeoMagnetRotationSensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.GravitySensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.GyroscopeSensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.HumiditySensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.LightSensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.LinearAccelerationSensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.PressureSensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.ProximitySensor
+import com.singularityindonesia.opendaimon.sys.lib.sensor.RotationSensor
 
 // todo: turn on sensor on demand
 class Sensors(
@@ -44,14 +52,3 @@ class Sensors(
     val humidity = HumiditySensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
 
 }
-
-// region Compose Provider
-val LocalSensors = staticCompositionLocalOf<Sensors> { error("No sensor provided") }
-
-@Composable
-fun ProvideSensors(sensors: Sensors, content: @Composable () -> Unit) {
-    CompositionLocalProvider(LocalSensors provides sensors) {
-        content()
-    }
-}
-// endregion
