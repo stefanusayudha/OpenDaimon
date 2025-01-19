@@ -1,5 +1,6 @@
 package com.singularityindonesia.opendaimon.sys.daimon.lib
 
+import android.content.Context
 import android.hardware.SensorManager
 import com.singularityindonesia.opendaimon.sys.lib.sensor.Accelerometer
 import com.singularityindonesia.opendaimon.sys.lib.sensor.AmbienceTemperatureSensor
@@ -17,6 +18,8 @@ import com.singularityindonesia.opendaimon.sys.lib.sensor.RotationSensor
 class Sensors(
     sensorManager: SensorManager?
 ) {
+
+    constructor(context: Context): this(context.getSystemService(Context.SENSOR_SERVICE) as SensorManager)
 
     // todo: adjust the delay on demand
     val accelerometer = Accelerometer(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)

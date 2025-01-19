@@ -1,6 +1,5 @@
 package com.singularityindonesia.opendaimon.shell.system
 
-import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ListItem
@@ -15,7 +14,8 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import com.singularityindonesia.opendaimon.sys.daimon.lib.Microphone
-import com.singularityindonesia.opendaimon.sys.lib.sensor.LocalSensors
+import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSensors
+import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSerialBus
 
 // todo: should observe the daimon directly
 @Composable
@@ -24,6 +24,7 @@ fun StatusPane(
 ) {
     val context = LocalContext.current
     val sensors = LocalSensors.current
+    val serialBus = LocalSerialBus.current
     val mic = remember { Microphone(context) }
 
     val items by remember(sensors) {
@@ -58,6 +59,16 @@ fun StatusPane(
                 },
                 trailingContent = {
                     mic.Display()
+                }
+            )
+        }
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Usb Device")
+                },
+                trailingContent = {
+                    serialBus.Display()
                 }
             )
         }
