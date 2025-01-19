@@ -1,5 +1,6 @@
 package com.singularityindonesia.opendaimon.shell.system
 
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ListItem
@@ -13,6 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.dp
 import com.singularityindonesia.opendaimon.sys.daimon.lib.Microphone
 import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSensors
 import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSerialBus
@@ -50,7 +52,8 @@ fun StatusPane(
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
-            .then(modifier)
+            .then(modifier),
+        contentPadding = PaddingValues(bottom = 100.dp)
     ) {
         item {
             ListItem(
