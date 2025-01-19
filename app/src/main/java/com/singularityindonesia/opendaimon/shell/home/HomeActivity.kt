@@ -14,6 +14,9 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.singularityindonesia.opendaimon.shell.lib.component.HeaderPage
 import com.singularityindonesia.opendaimon.shell.lib.overlay.BackToStartOverLay
+import com.singularityindonesia.opendaimon.shell.system.AboutPane
+import com.singularityindonesia.opendaimon.shell.system.ControlPane
+import com.singularityindonesia.opendaimon.shell.system.StatusPane
 import kotlinx.coroutines.launch
 
 @Composable

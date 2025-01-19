@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.home
+package com.singularityindonesia.opendaimon.shell.system
 
 import android.app.Activity
 import android.content.Intent

@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.home
+package com.singularityindonesia.opendaimon.shell.system
 
 import androidx.compose.foundation.layout.Column
 import androidx.compose.foundation.layout.fillMaxSize
