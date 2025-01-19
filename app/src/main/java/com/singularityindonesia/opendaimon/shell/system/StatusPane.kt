@@ -12,26 +12,20 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
-import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalMicrophone
-import com.singularityindonesia.opendaimon.sys.daimon.lib.Microphone
-import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSensors
-import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSerialBus
+import com.singularityindonesia.opendaimon.sys.daimon.LocalDaimon
 
 // todo: should observe the daimon directly
 @Composable
 fun StatusPane(
     modifier: Modifier = Modifier
 ) {
-    val sensors = LocalSensors.current
-    val serialBus = LocalSerialBus.current
-    val mic = LocalMicrophone.current
+    val daimon = LocalDaimon.current
 
-    val items by remember(sensors) {
+    val items by remember(daimon.sensors) {
         derivedStateOf {
-            with(sensors) {
+            with(daimon.sensors) {
                 listOf(
                     accelerometer to "Accelerometer",
                     gravity to "Gravity",
@@ -55,23 +49,23 @@ fun StatusPane(
             .then(modifier),
         contentPadding = PaddingValues(bottom = 100.dp)
     ) {
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Microphone")
-                },
-                trailingContent = {
-                    mic.Display()
-                }
-            )
-        }
+//        item {
+//            ListItem(
+//                headlineContent = {
+//                    Text("Microphone")
+//                },
+//                trailingContent = {
+//                    daimon.microphone.Display()
+//                }
+//            )
+//        }
         item {
             ListItem(
                 headlineContent = {
                     Text("Usb Device")
                 },
                 trailingContent = {
-                    serialBus.Display()
+                    daimon.serialBus.Display()
                 }
             )
         }

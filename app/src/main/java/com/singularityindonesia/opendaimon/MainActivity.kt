@@ -6,26 +6,17 @@ import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
-import com.singularityindonesia.opendaimon.sys.daimon.lib.ProvideSensors
-import com.singularityindonesia.opendaimon.sys.daimon.lib.Sensors
 import com.singularityindonesia.opendaimon.shell.lib.theme.OpenDaimonTheme
-import com.singularityindonesia.opendaimon.sys.daimon.lib.Microphone
-import com.singularityindonesia.opendaimon.sys.daimon.lib.ProvideMicrophone
-import com.singularityindonesia.opendaimon.sys.daimon.lib.ProvideSerialBus
-import com.singularityindonesia.opendaimon.sys.daimon.lib.SerialBus
+import com.singularityindonesia.opendaimon.sys.daimon.Daimon
+import com.singularityindonesia.opendaimon.sys.daimon.ProvideDaimon
 
 class MainActivity : ComponentActivity() {
 
-    private lateinit var sensors: Sensors
-    private lateinit var serialBus: SerialBus
-    private lateinit var microphone: Microphone
+    private lateinit var daimon: Daimon
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
-
-        initiateMicrophone()
-        initiateSensors()
-        initiateSerialBus()
+        initiateDaimon()
     }
 
     override fun onCreate(savedInstanceState: Bundle?) {
@@ -35,12 +26,8 @@ class MainActivity : ComponentActivity() {
         setContent {
             OpenDaimonTheme {
                 // fixme: all this should be provided by the daimon
-                ProvideSerialBus(serialBus) {
-                    ProvideSensors(sensors) {
-                        ProvideMicrophone(microphone) {
-                            MainPlot()
-                        }
-                    }
+                ProvideDaimon(daimon) {
+                    MainPlot()
                 }
             }
         }
@@ -61,9 +48,7 @@ class MainActivity : ComponentActivity() {
     private fun startDaemon() {
         // fixme: for now we will not use daemon directly
         runCatching {
-            microphone.listen()
-            //serialBus.start()
-            sensors.start()
+            daimon.start()
         }.onFailure {
             Toast.makeText(this, "Daemon Start Failed", Toast.LENGTH_SHORT).show()
         }.onSuccess {
@@ -72,20 +57,10 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun stopDaemon() {
-        microphone.stop()
-        //serialBus.stop()
-        sensors.stop()
+        daimon.stop()
     }
 
-    private fun initiateMicrophone() {
-        this.microphone = Microphone(this)
-    }
-
-    private fun initiateSensors() {
-        this.sensors = Sensors(this)
-    }
-
-    private fun initiateSerialBus() {
-        this.serialBus = SerialBus(this)
+    private fun initiateDaimon() {
+        daimon = Daimon(this)
     }
 }
