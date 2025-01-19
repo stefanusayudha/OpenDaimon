@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.theme
+package com.singularityindonesia.opendaimon.shell.lib.theme
 
 import android.os.Build
 import androidx.compose.foundation.isSystemInDarkTheme

@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.singularityindonesia.opendaimon.shell.component.HeaderPage
-import com.singularityindonesia.opendaimon.shell.overlay.BackToStartOverLay
+import com.singularityindonesia.opendaimon.shell.lib.component.HeaderPage
+import com.singularityindonesia.opendaimon.shell.lib.overlay.BackToStartOverLay
 import kotlinx.coroutines.launch
 
 @Composable
