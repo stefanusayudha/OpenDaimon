@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.ui.protocol
+package com.singularityindonesia.opendaimon.shell.protocol
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

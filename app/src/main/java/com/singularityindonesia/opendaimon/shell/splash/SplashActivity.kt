@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.ui.splash
+package com.singularityindonesia.opendaimon.shell.splash
 
 import androidx.compose.foundation.layout.padding
 import androidx.compose.material3.Scaffold

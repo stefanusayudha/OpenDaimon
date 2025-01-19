@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.ui.component
+package com.singularityindonesia.opendaimon.shell.component
 
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Row

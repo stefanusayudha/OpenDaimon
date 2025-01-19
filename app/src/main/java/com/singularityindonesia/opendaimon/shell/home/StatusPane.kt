@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.ui.home
+package com.singularityindonesia.opendaimon.shell.home
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.lazy.LazyColumn

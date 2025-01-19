@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.ui.theme
+package com.singularityindonesia.opendaimon.shell.theme
 
 import androidx.compose.ui.graphics.Color
 

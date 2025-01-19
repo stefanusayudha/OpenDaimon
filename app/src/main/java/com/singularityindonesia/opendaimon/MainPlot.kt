@@ -6,9 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.singularityindonesia.opendaimon.ui.home.HomeActivity
-import com.singularityindonesia.opendaimon.ui.protocol.ProtocolActivity
-import com.singularityindonesia.opendaimon.ui.splash.SplashActivity
+import com.singularityindonesia.opendaimon.shell.home.HomeActivity
+import com.singularityindonesia.opendaimon.shell.protocol.ProtocolActivity
+import com.singularityindonesia.opendaimon.shell.splash.SplashActivity
 
 @Composable
 fun MainPlot() {

@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.ui.home
+package com.singularityindonesia.opendaimon.shell.home
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.foundation.layout.navigationBarsPadding
@@ -12,8 +12,8 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import com.singularityindonesia.opendaimon.ui.component.HeaderPage
-import com.singularityindonesia.opendaimon.ui.overlay.BackToStartOverLay
+import com.singularityindonesia.opendaimon.shell.component.HeaderPage
+import com.singularityindonesia.opendaimon.shell.overlay.BackToStartOverLay
 import kotlinx.coroutines.launch
 
 @Composable
