@@ -14,6 +14,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import com.singularityindonesia.opendaimon.sys.lib.sensor.LocalSensors
 
+// todo: should observe the daimon directly
 @Composable
 fun StatusPane(
     modifier: Modifier = Modifier
