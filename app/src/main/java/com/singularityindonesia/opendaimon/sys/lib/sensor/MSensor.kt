@@ -19,6 +19,9 @@ interface MSensor {
         return sensor != null || uncalibratedSensor != null
     }
 
+    fun start()
+    fun stop()
+    
     @Composable
     fun Display(modifier: Modifier, alignment: Alignment.Horizontal)
 

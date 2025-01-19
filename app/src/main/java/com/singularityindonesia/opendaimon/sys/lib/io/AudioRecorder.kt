@@ -21,7 +21,7 @@ class AudioRecorder(
 
     fun startRecording() {
         if (isRecording.value) return
-        try {
+        runCatching {
             // Create a HandlerThread for recording
             recordingThread = HandlerThread("RecordingThread")
             recordingThread?.start()
@@ -34,19 +34,21 @@ class AudioRecorder(
 
             // Post the recording task to the Handler
             recordingHandler?.post {
-                mediaRecorder.apply {
-                    reset()
-                    setAudioSource(MediaRecorder.AudioSource.MIC)
-                    setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
-                    setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
-                    setOutputFile(outputFile)
-                    prepare()
-                    start()
-                }
-                isRecording.value = true
-                Log.d("AudioRecorder", "Recording started")
+                runCatching {
+                    mediaRecorder.apply {
+                        reset()
+                        setAudioSource(MediaRecorder.AudioSource.MIC)
+                        setOutputFormat(MediaRecorder.OutputFormat.THREE_GPP)
+                        setAudioEncoder(MediaRecorder.AudioEncoder.AMR_NB)
+                        setOutputFile(outputFile)
+                        prepare()
+                        start()
+                    }
+                    isRecording.value = true
+                    Log.d("AudioRecorder", "Recording started")
+                }.onFailure { throw it }
             }
-        } catch (e: Exception) {
+        }.onFailure { e ->
             Log.e("AudioRecorder", "Error starting recording: ${e.message}")
             stopRecording()
         }

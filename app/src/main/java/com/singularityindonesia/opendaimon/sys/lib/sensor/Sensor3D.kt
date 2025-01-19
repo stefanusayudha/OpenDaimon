@@ -69,7 +69,9 @@ interface Sensor3D : MSensor, SensorEventListener {
         Text(modifier = modifier, text = display)
     }
 
-    fun stop()
+    override fun start()
+
+    override fun stop()
 }
 
 fun sensor3d(
@@ -92,6 +94,24 @@ fun sensor3d(
 
         override val uncalibrated = MutableStateFlow(Triple(0f, 0f, 0f))
         override val uncalibratedAccuracy = MutableStateFlow(0)
+
+        override fun start() {
+            sensorManager?.registerListener(
+                this,
+                sensor,
+                sensorDelay
+            )
+
+            sensorManager?.registerListener(
+                this,
+                uncalibratedSensor,
+                sensorDelay
+            )
+        }
+
+        override fun stop() {
+            sensorManager?.unregisterListener(this)
+        }
 
         override fun onSensorChanged(event: SensorEvent?) {
             event?.let {
@@ -127,24 +147,6 @@ fun sensor3d(
 
                 else -> {}
             }
-        }
-
-        override fun stop() {
-            sensorManager?.unregisterListener(this)
-        }
-
-        init {
-            sensorManager?.registerListener(
-                this,
-                sensor,
-                sensorDelay
-            )
-
-            sensorManager?.registerListener(
-                this,
-                uncalibratedSensor,
-                sensorDelay
-            )
         }
     }
 }

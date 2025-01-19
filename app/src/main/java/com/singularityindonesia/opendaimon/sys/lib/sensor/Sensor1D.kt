@@ -57,7 +57,8 @@ interface Sensor1D : MSensor, SensorEventListener {
         Text(modifier = modifier, text = display)
     }
 
-    fun stop()
+    override fun start()
+    override fun stop()
 }
 
 fun sensor1d(
@@ -81,6 +82,24 @@ fun sensor1d(
 
         override val uncalibrated = MutableStateFlow(0f)
         override val uncalibratedAccuracy = MutableStateFlow(0)
+
+        override fun start() {
+            sensorManager?.registerListener(
+                this,
+                sensor,
+                sensorDelay
+            )
+
+            sensorManager?.registerListener(
+                this,
+                uncalibratedSensor,
+                sensorDelay
+            )
+        }
+
+        override fun stop() {
+            sensorManager?.unregisterListener(this)
+        }
 
         override fun onSensorChanged(event: SensorEvent?) {
             event?.let {
@@ -110,24 +129,6 @@ fun sensor1d(
 
                 else -> {}
             }
-        }
-
-        override fun stop() {
-            sensorManager?.unregisterListener(this)
-        }
-
-        init {
-            sensorManager?.registerListener(
-                this,
-                sensor,
-                sensorDelay
-            )
-
-            sensorManager?.registerListener(
-                this,
-                uncalibratedSensor,
-                sensorDelay
-            )
         }
     }
 }

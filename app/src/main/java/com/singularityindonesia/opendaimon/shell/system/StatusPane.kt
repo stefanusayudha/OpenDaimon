@@ -15,6 +15,7 @@ import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.platform.LocalContext
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
+import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalMicrophone
 import com.singularityindonesia.opendaimon.sys.daimon.lib.Microphone
 import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSensors
 import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSerialBus
@@ -24,10 +25,9 @@ import com.singularityindonesia.opendaimon.sys.daimon.lib.LocalSerialBus
 fun StatusPane(
     modifier: Modifier = Modifier
 ) {
-    val context = LocalContext.current
     val sensors = LocalSensors.current
     val serialBus = LocalSerialBus.current
-    val mic = remember { Microphone(context) }
+    val mic = LocalMicrophone.current
 
     val items by remember(sensors) {
         derivedStateOf {

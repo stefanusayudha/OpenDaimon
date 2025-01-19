@@ -19,7 +19,7 @@ class Sensors(
     sensorManager: SensorManager?
 ) {
 
-    constructor(context: Context): this(context.getSystemService(Context.SENSOR_SERVICE) as SensorManager)
+    constructor(context: Context) : this(context.getSystemService(Context.SENSOR_SERVICE) as SensorManager)
 
     // todo: adjust the delay on demand
     val accelerometer = Accelerometer(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
@@ -28,7 +28,8 @@ class Sensors(
     val gravity = GravitySensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
 
     // todo: adjust the delay on demand
-    val linearAcceleration = LinearAccelerationSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    val linearAcceleration =
+        LinearAccelerationSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
 
     // todo: adjust the delay on demand
     val gyroscope = GyroscopeSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
@@ -53,5 +54,41 @@ class Sensors(
 
     // todo: adjust the delay on demand
     val humidity = HumiditySensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+
+    fun start() {
+        startAll()
+    }
+
+    fun startAll() {
+        accelerometer.start()
+        gravity.start()
+        linearAcceleration.start()
+        gyroscope.start()
+        rotation.start()
+        geoRotation.start()
+        proximity.start()
+        light.start()
+        ambienceTemp.start()
+        pressure.start()
+        humidity.start()
+    }
+
+    fun stop() {
+        stopAll()
+    }
+
+    fun stopAll() {
+        accelerometer.stop()
+        gravity.stop()
+        linearAcceleration.stop()
+        gyroscope.stop()
+        rotation.stop()
+        geoRotation.stop()
+        proximity.stop()
+        light.stop()
+        ambienceTemp.stop()
+        pressure.stop()
+        humidity.stop()
+    }
 
 }
