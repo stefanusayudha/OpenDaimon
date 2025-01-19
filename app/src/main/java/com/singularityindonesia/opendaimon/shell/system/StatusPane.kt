@@ -10,6 +10,7 @@ import androidx.compose.runtime.getValue
 import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import com.singularityindonesia.opendaimon.sys.lib.sensor.LocalSensors
 
@@ -33,7 +34,7 @@ fun StatusPane(
                     ambienceTemp to "Amb Temp",
                     pressure to "Pressure",
                     humidity to "Humidity",
-                ).filter { it.first.exist() }
+                )
             }
         }
     }
@@ -45,8 +46,10 @@ fun StatusPane(
     ) {
         items(items.size) { i ->
             val item = items[i]
+            val exist = remember(item) { item.first.exist() }
 
             ListItem(
+                modifier = Modifier.alpha(if (exist) 1f else .3f),
                 headlineContent = {
                     Text(item.second)
                 },
