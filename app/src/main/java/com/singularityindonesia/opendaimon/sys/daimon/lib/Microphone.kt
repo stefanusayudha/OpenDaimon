@@ -64,11 +64,11 @@ class Microphone(
         val isListening = isListening.collectAsStateWithLifecycle()
 
         // fixme: should be started by the daimon
-        LaunchedEffect(isListening.value) {
-            if (isListening.value) return@LaunchedEffect
-
-            listen()
-        }
+        // LaunchedEffect(isListening.value) {
+        //     if (isListening.value) return@LaunchedEffect
+        //
+        //     listen()
+        // }
 
         Row(
             verticalAlignment = Alignment.CenterVertically
