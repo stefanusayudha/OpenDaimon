@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.lib.sensor
+package com.singularityindonesia.opendaimon.sys.lib.sensor
 
 import android.hardware.SensorManager
 import androidx.compose.runtime.Composable

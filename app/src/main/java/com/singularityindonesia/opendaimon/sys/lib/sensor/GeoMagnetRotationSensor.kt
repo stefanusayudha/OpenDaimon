@@ -1,15 +1,15 @@
-package com.singularityindonesia.opendaimon.lib.sensor
+package com.singularityindonesia.opendaimon.sys.lib.sensor
 
 import android.hardware.Sensor
 import android.hardware.SensorManager
 
 // todo: turn on sensor on demand
-class GravitySensor(
+class GeoMagnetRotationSensor(
     sensorManager: SensorManager?,
     sensorDelay: Int
-)  : Sensor3D by sensor3d(
+) : Sensor3D by sensor3d(
     sensorManager = sensorManager,
     sensorDelay = sensorDelay,
-    sensorType = Sensor.TYPE_GRAVITY,
+    sensorType = Sensor.TYPE_GEOMAGNETIC_ROTATION_VECTOR,
     uncalibratedSensorType = -1
 )

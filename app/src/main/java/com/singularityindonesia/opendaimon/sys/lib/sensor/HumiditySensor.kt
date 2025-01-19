@@ -1,15 +1,15 @@
-package com.singularityindonesia.opendaimon.lib.sensor
+package com.singularityindonesia.opendaimon.sys.lib.sensor
 
 import android.hardware.Sensor
 import android.hardware.SensorManager
 
 // todo: turn on sensor on demand
-class LinearAccelerationSensor(
+class HumiditySensor(
     sensorManager: SensorManager?,
     sensorDelay: Int
-) : Sensor3D by sensor3d(
+) : Sensor1D by sensor1d(
     sensorManager = sensorManager,
     sensorDelay = sensorDelay,
-    sensorType = Sensor.TYPE_LINEAR_ACCELERATION,
+    sensorType = Sensor.TYPE_RELATIVE_HUMIDITY,
     uncalibratedSensorType = -1
 )

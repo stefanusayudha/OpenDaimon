@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.lib.sensor
+package com.singularityindonesia.opendaimon.sys.lib.sensor
 
 import android.hardware.Sensor
 import android.hardware.SensorEvent
@@ -12,14 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.MutableStateFlow
 
-interface Sensor1D : SensorEventListener {
+interface Sensor3D : SensorEventListener {
     val sensorType: Int
     val uncalibratedSensorType: Int
 
-    val state: MutableStateFlow<Float>
+    val state: MutableStateFlow<Triple<Float, Float, Float>>
     val accuracy: MutableStateFlow<Int>
 
-    val uncalibrated: MutableStateFlow<Float>
+    val uncalibrated: MutableStateFlow<Triple<Float, Float, Float>>
     val uncalibratedAccuracy: MutableStateFlow<Int>
 
     @Composable
@@ -35,7 +35,13 @@ interface Sensor1D : SensorEventListener {
     @Composable
     fun Calibrated(modifier: Modifier) {
         val currentState = this.state.collectAsStateWithLifecycle()
-        val display = currentState.value.toString().take(4)
+
+        val display = currentState.value.let {
+            val x = it.first.toString().take(4)
+            val y = it.second.toString().take(4)
+            val z = it.third.toString().take(4)
+            "$x, $y, $z"
+        }
 
         Text(modifier = modifier, text = display)
     }
@@ -43,7 +49,13 @@ interface Sensor1D : SensorEventListener {
     @Composable
     fun Uncalibrated(modifier: Modifier) {
         val currentState = this.uncalibrated.collectAsStateWithLifecycle()
-        val display = currentState.value.toString().take(4)
+
+        val display = currentState.value.let {
+            val x = it.first.toString().take(4)
+            val y = it.second.toString().take(4)
+            val z = it.third.toString().take(4)
+            "$x, $y, $z"
+        }
 
         Text(modifier = modifier, text = display)
     }
@@ -51,13 +63,13 @@ interface Sensor1D : SensorEventListener {
     fun stop()
 }
 
-fun sensor1d(
+fun sensor3d(
     sensorManager: SensorManager?,
     sensorDelay: Int,
     sensorType: Int,
     uncalibratedSensorType: Int
-): Sensor1D {
-    return object : Sensor1D {
+): Sensor3D {
+    return object : Sensor3D {
         override val sensorType: Int = sensorType
         override val uncalibratedSensorType: Int = uncalibratedSensorType
 
@@ -65,21 +77,27 @@ fun sensor1d(
         private val uncalibratedSensor = sensorManager?.getDefaultSensor(uncalibratedSensorType)
 
 
-        override val state = MutableStateFlow(0f)
+        override val state = MutableStateFlow(Triple(0f, 0f, 0f))
         override val accuracy = MutableStateFlow(0)
 
-        override val uncalibrated = MutableStateFlow(0f)
+        override val uncalibrated = MutableStateFlow(Triple(0f, 0f, 0f))
         override val uncalibratedAccuracy = MutableStateFlow(0)
 
         override fun onSensorChanged(event: SensorEvent?) {
             event?.let {
                 when (it.sensor.type) {
                     sensorType -> {
-                        state.value = it.values[0]
+                        val x = it.values[0]
+                        val y = it.values[1]
+                        val z = it.values[2]
+                        state.value = Triple(x, y, z)
                     }
 
                     uncalibratedSensorType -> {
-                        uncalibrated.value = it.values[0]
+                        val x = it.values[0]
+                        val y = it.values[1]
+                        val z = it.values[2]
+                        uncalibrated.value = Triple(x, y, z)
                     }
 
                     else -> {}
