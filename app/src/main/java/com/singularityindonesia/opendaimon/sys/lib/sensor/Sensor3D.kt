@@ -12,9 +12,14 @@ import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
 import kotlinx.coroutines.flow.MutableStateFlow
 
-interface Sensor3D : SensorEventListener {
-    val sensorType: Int
-    val uncalibratedSensorType: Int
+interface Sensor3D : MSensor, SensorEventListener {
+    override val sensorManager: SensorManager?
+
+    override val sensor: Sensor?
+    override val sensorType: Int
+
+    override val uncalibratedSensor: Sensor?
+    override val uncalibratedSensorType: Int
 
     val state: MutableStateFlow<Triple<Float, Float, Float>>
     val accuracy: MutableStateFlow<Int>
@@ -22,8 +27,12 @@ interface Sensor3D : SensorEventListener {
     val uncalibrated: MutableStateFlow<Triple<Float, Float, Float>>
     val uncalibratedAccuracy: MutableStateFlow<Int>
 
+    override fun exist(): Boolean {
+        return sensor != null || uncalibratedSensor != null
+    }
+
     @Composable
-    fun Display(modifier: Modifier, alignment: Alignment.Horizontal) {
+    override fun Display(modifier: Modifier, alignment: Alignment.Horizontal) {
         Column(
             horizontalAlignment = alignment
         ) {
@@ -33,7 +42,7 @@ interface Sensor3D : SensorEventListener {
     }
 
     @Composable
-    fun Calibrated(modifier: Modifier) {
+    override fun Calibrated(modifier: Modifier) {
         val currentState = this.state.collectAsStateWithLifecycle()
 
         val display = currentState.value.let {
@@ -47,7 +56,7 @@ interface Sensor3D : SensorEventListener {
     }
 
     @Composable
-    fun Uncalibrated(modifier: Modifier) {
+    override fun Uncalibrated(modifier: Modifier) {
         val currentState = this.uncalibrated.collectAsStateWithLifecycle()
 
         val display = currentState.value.let {
@@ -70,11 +79,12 @@ fun sensor3d(
     uncalibratedSensorType: Int
 ): Sensor3D {
     return object : Sensor3D {
+        override val sensorManager: SensorManager? = sensorManager
         override val sensorType: Int = sensorType
         override val uncalibratedSensorType: Int = uncalibratedSensorType
 
-        private val sensor = sensorManager?.getDefaultSensor(sensorType)
-        private val uncalibratedSensor = sensorManager?.getDefaultSensor(uncalibratedSensorType)
+        override val sensor = sensorManager?.getDefaultSensor(sensorType)
+        override val uncalibratedSensor = sensorManager?.getDefaultSensor(uncalibratedSensorType)
 
 
         override val state = MutableStateFlow(Triple(0f, 0f, 0f))

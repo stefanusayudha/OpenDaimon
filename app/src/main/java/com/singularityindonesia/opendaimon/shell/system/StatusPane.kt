@@ -5,6 +5,9 @@ import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.ListItem
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.derivedStateOf
+import androidx.compose.runtime.getValue
+import androidx.compose.runtime.remember
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
@@ -15,170 +18,40 @@ fun StatusPane(
     modifier: Modifier = Modifier
 ) {
     val sensors = LocalSensors.current
-    val accelerometer = sensors.accelerometer
-    val gravity = sensors.gravity
-    val gyroscope = sensors.gyroscope
-    val linearAcceleration = sensors.linearAcceleration
-    val rotation = sensors.rotation
-    val geoRotation = sensors.geoRotation
-    val proximity = sensors.proximity
-    val light = sensors.light
-    val ambienceTemp = sensors.ambienceTemp
-    val pressure = sensors.pressure
-    val humidity = sensors.humidity
+    val items by remember(sensors) {
+        derivedStateOf {
+            with(sensors) {
+                listOf(
+                    accelerometer to "Accelerometer",
+                    gravity to "Gravity",
+                    gyroscope to "Gyroscope",
+                    linearAcceleration to "Linear Accel",
+                    rotation to "Rotation",
+                    geoRotation to "Geo Rotation",
+                    proximity to "Proximity",
+                    light to "Light",
+                    ambienceTemp to "Amb Temp",
+                    pressure to "Pressure",
+                    humidity to "Humidity",
+                ).filter { it.first.exist() }
+            }
+        }
+    }
 
     LazyColumn(
         modifier = Modifier
             .fillMaxSize()
             .then(modifier)
     ) {
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Accelerometer")
-                },
-                trailingContent = {
-                    accelerometer.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
+        items(items.size) { i ->
+            val item = items[i]
 
-        item {
             ListItem(
                 headlineContent = {
-                    Text("Gravity")
+                    Text(item.second)
                 },
                 trailingContent = {
-                    gravity.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Gyro")
-                },
-                trailingContent = {
-                    gyroscope.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Rotation")
-                },
-                trailingContent = {
-                    rotation.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Geo Rotation")
-                },
-                trailingContent = {
-                    geoRotation.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Linear Accel")
-                },
-                trailingContent = {
-                    linearAcceleration.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Proximity")
-                },
-                trailingContent = {
-                    proximity.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Light")
-                },
-                trailingContent = {
-                    light.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Ambience Temp")
-                },
-                trailingContent = {
-                    ambienceTemp.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Pressure")
-                },
-                trailingContent = {
-                    pressure.Display(
-                        modifier = Modifier,
-                        alignment = Alignment.End
-                    )
-                },
-            )
-        }
-
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Humidity")
-                },
-                trailingContent = {
-                    humidity.Display(
+                    item.first.Display(
                         modifier = Modifier,
                         alignment = Alignment.End
                     )
