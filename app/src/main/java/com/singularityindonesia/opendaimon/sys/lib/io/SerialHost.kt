@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.sys.daimon.lib
+package com.singularityindonesia.opendaimon.sys.lib.io
 
 import android.hardware.usb.UsbDeviceConnection
 import android.hardware.usb.UsbManager
