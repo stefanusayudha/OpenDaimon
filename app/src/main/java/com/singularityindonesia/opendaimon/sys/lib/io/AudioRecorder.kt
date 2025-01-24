@@ -1,13 +1,10 @@
 package com.singularityindonesia.opendaimon.sys.lib.io
 
 import android.media.MediaRecorder
-import android.os.Environment
 import android.os.Handler
 import android.os.HandlerThread
-import android.os.Looper
 import android.util.Log
 import kotlinx.coroutines.flow.MutableStateFlow
-import kotlinx.coroutines.flow.update
 import java.io.File
 
 // todo: turn on and off on demand
