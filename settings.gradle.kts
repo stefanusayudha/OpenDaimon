@@ -22,5 +22,14 @@ dependencyResolutionManagement {
 
 rootProject.name = "Open Daimon"
 include(":app")
-include(":lib:sensor")
-include(":lib:serial")
+
+// include all libraries
+File(settingsDir, "./lib")
+    .listFiles()
+    ?.asSequence()
+    ?.filter { it.isDirectory }
+    ?.filter { it.listFiles()?.map { it.name }?.contains("build.gradle.kts") == true }
+    ?.onEach { dir ->
+        include(":lib:${dir.name}")
+    }
+    ?.toList()
