@@ -13,4 +13,11 @@ class CNS {
     val sensoryLobe: SensoryLobe = SensoryLobe()
     val motorLobe: MotorLobe = MotorLobe()
     val controlLobe: ControlLobe = ControlLobe()
+    val commissuralFiber = TODO()
+    val associationFiber = TODO()
+    val projectionFiber = TODO()
+
+    init {
+
+    }
 }
