@@ -71,5 +71,5 @@ dependencies {
     implementation(libs.androidx.navigation.compose)
     implementation(libs.kotlinx.serialization.json)
     implementation(libs.usb.serial.android)
-    implementation(project(":sensor"))
+    implementation(project(":lib:sensor"))
 }

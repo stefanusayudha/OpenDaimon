@@ -22,4 +22,5 @@ dependencyResolutionManagement {
 
 rootProject.name = "Open Daimon"
 include(":app")
-include(":sensor")
+include(":lib:sensor")
+include(":lib:serial")
