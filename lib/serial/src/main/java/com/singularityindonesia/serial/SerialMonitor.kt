@@ -3,6 +3,7 @@ package com.singularityindonesia.serial
 import android.util.Log
 import androidx.compose.foundation.layout.Arrangement
 import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -60,13 +61,22 @@ class SerialMonitor(
     private val simpleMonitorMessageBuffer = MutableStateFlow<List<String>>(emptyList())
 
     @Composable
-    fun SimpleMonitor(modifier: Modifier = Modifier) {
+    fun SimpleMonitor(
+        modifier: Modifier = Modifier,
+        contentPadding: PaddingValues = PaddingValues(
+            horizontal = 16.dp
+        )
+    ) {
         val scope = rememberCoroutineScope()
 
         LaunchedEffect(Unit) {
             subscribe(scope) { message ->
                 simpleMonitorMessageBuffer.update { list ->
-                    list.plus("${LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))} $message").takeLast(100)
+                    list.plus(
+                        "${
+                            LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+                        } $message"
+                    ).takeLast(100)
                 }
             }
         }
@@ -75,6 +85,7 @@ class SerialMonitor(
 
         LazyColumn(
             modifier = modifier,
+            contentPadding = contentPadding
         ) {
             items(messages.value.size) {
                 Text(text = messages.value[it].replace("\n", ""))

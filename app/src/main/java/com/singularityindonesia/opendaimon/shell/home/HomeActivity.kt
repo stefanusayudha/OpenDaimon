@@ -78,10 +78,7 @@ fun HomeActivity(
             state = pagerState
         ) { index ->
             when (index) {
-                0 -> SerialMonitorPane(
-                    modifier = Modifier.padding(horizontal = 16.dp)
-                )
-
+                0 -> SerialMonitorPane()
                 1 -> GlyphScene()
                 2 -> StatusPane()
                 3 -> ControlPane(
