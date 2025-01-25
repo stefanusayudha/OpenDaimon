@@ -36,15 +36,15 @@ fun MainPlot() {
             )
         }
         composable(
-            route = "protocol/{protocolId}",
+            route = "protocol/{path}",
             arguments = listOf(
-                navArgument("protocolId") { type = NavType.StringType }
+                navArgument("path") { type = NavType.StringType }
             )
         ) { backStackEntry ->
-            val protocolId = backStackEntry.arguments?.getString("protocolId")
+            val path = backStackEntry.arguments?.getString("path")
 
             ProtocolActivity(
-                protocolId = protocolId.orEmpty(),
+                path = path.orEmpty(),
                 returnBack = {
                     controller.popBackStack()
                 }

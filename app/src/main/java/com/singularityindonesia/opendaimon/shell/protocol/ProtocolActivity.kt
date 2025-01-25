@@ -14,14 +14,14 @@ import com.singularityindonesia.opendaimon.shell.lib.component.HeaderPage
 
 @Composable
 fun ProtocolActivity(
-    protocolId: String,
+    path: String,
     returnBack: () -> Unit
 ) {
     val controller = rememberNavController()
-    val pageTitle = remember(protocolId) {
+    val pageTitle = remember(path) {
         "Protocol${
-            protocolId.takeIf { it.isNotBlank() }
-                ?.let { "/${it.replaceFirstChar { c -> c.uppercaseChar() }}" }
+            path.takeIf { it.isNotBlank() }
+                ?.let { "/${it.replaceFirstChar { c -> c.uppercaseChar() }}" }.orEmpty()
         }"
     }
 
@@ -41,7 +41,7 @@ fun ProtocolActivity(
     ) { padding ->
         ProtocolPlot(
             modifier = Modifier.padding(padding),
-            protocolId = protocolId,
+            path = path,
             controller = controller,
         )
     }
@@ -51,7 +51,7 @@ fun ProtocolActivity(
 @Composable
 private fun Preview() {
     ProtocolActivity(
-        protocolId = "",
+        path = "",
         returnBack = {}
     )
 }

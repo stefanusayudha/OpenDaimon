@@ -10,13 +10,13 @@ import androidx.navigation.compose.composable
 @Composable
 fun ProtocolPlot(
     modifier: Modifier = Modifier,
-    protocolId: String,
+    path: String,
     controller: NavHostController
 ) {
     NavHost(
         modifier = modifier,
         navController = controller,
-        startDestination = protocolId.takeIf { it.isNotBlank() } ?: "home"
+        startDestination = path.takeIf { it.isNotBlank() } ?: "home"
     ) {
         composable(
             route = "home"
