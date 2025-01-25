@@ -1,18 +1,18 @@
-package com.singularityindonesia.opendaimon.sys.daimon.lib
+package com.singularityindonesia.sensor
 
 import android.content.Context
 import android.hardware.SensorManager
-import com.singularityindonesia.sensor.Accelerometer
-import com.singularityindonesia.sensor.AmbienceTemperatureSensor
-import com.singularityindonesia.sensor.GeoMagnetRotationSensor
-import com.singularityindonesia.sensor.GravitySensor
-import com.singularityindonesia.sensor.GyroscopeSensor
-import com.singularityindonesia.sensor.HumiditySensor
-import com.singularityindonesia.sensor.LightSensor
-import com.singularityindonesia.sensor.LinearAccelerationSensor
-import com.singularityindonesia.sensor.PressureSensor
-import com.singularityindonesia.sensor.ProximitySensor
-import com.singularityindonesia.sensor.RotationSensor
+import com.singularityindonesia.sensor.`var`.Accelerometer
+import com.singularityindonesia.sensor.`var`.AmbienceTemperatureSensor
+import com.singularityindonesia.sensor.`var`.GeoMagnetRotationSensor
+import com.singularityindonesia.sensor.`var`.GravitySensor
+import com.singularityindonesia.sensor.`var`.GyroscopeSensor
+import com.singularityindonesia.sensor.`var`.HumiditySensor
+import com.singularityindonesia.sensor.`var`.LightSensor
+import com.singularityindonesia.sensor.`var`.LinearAccelerationSensor
+import com.singularityindonesia.sensor.`var`.PressureSensor
+import com.singularityindonesia.sensor.`var`.ProximitySensor
+import com.singularityindonesia.sensor.`var`.RotationSensor
 
 // todo: turn on sensor on demand
 class Sensors(

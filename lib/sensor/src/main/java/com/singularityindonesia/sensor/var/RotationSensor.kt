@@ -1,15 +1,17 @@
-package com.singularityindonesia.sensor
+package com.singularityindonesia.sensor.`var`
 
 import android.hardware.Sensor
 import android.hardware.SensorManager
+import com.singularityindonesia.sensor.Sensor3D
+import com.singularityindonesia.sensor.sensor3d
 
 // todo: turn on sensor on demand
-class ProximitySensor(
+class RotationSensor(
     sensorManager: SensorManager?,
     sensorDelay: Int
-) : Sensor1D by sensor1d(
+) : Sensor3D by sensor3d(
     sensorManager = sensorManager,
     sensorDelay = sensorDelay,
-    sensorType = Sensor.TYPE_PROXIMITY,
+    sensorType = Sensor.TYPE_ROTATION_VECTOR,
     uncalibratedSensorType = -1
 )

@@ -1,15 +1,17 @@
-package com.singularityindonesia.sensor
+package com.singularityindonesia.sensor.`var`
 
 import android.hardware.Sensor
 import android.hardware.SensorManager
+import com.singularityindonesia.sensor.Sensor1D
+import com.singularityindonesia.sensor.sensor1d
 
 // todo: turn on sensor on demand
-class RotationSensor(
+class HumiditySensor(
     sensorManager: SensorManager?,
     sensorDelay: Int
-) : Sensor3D by sensor3d(
+) : Sensor1D by sensor1d(
     sensorManager = sensorManager,
     sensorDelay = sensorDelay,
-    sensorType = Sensor.TYPE_ROTATION_VECTOR,
+    sensorType = Sensor.TYPE_RELATIVE_HUMIDITY,
     uncalibratedSensorType = -1
 )
