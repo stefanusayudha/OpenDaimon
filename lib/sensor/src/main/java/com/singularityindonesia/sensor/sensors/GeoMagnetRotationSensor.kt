@@ -1,4 +1,4 @@
-package com.singularityindonesia.sensor.`var`
+package com.singularityindonesia.sensor.sensors
 
 import android.hardware.Sensor
 import android.hardware.SensorManager

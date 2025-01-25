@@ -1,17 +1,17 @@
-package com.singularityindonesia.sensor.`var`
+package com.singularityindonesia.sensor.sensors
 
 import android.hardware.Sensor
 import android.hardware.SensorManager
-import com.singularityindonesia.sensor.Sensor3D
-import com.singularityindonesia.sensor.sensor3d
+import com.singularityindonesia.sensor.Sensor1D
+import com.singularityindonesia.sensor.sensor1d
 
 // todo: turn on sensor on demand
-class GravitySensor(
+class ProximitySensor(
     sensorManager: SensorManager?,
     sensorDelay: Int
-)  : Sensor3D by sensor3d(
+) : Sensor1D by sensor1d(
     sensorManager = sensorManager,
     sensorDelay = sensorDelay,
-    sensorType = Sensor.TYPE_GRAVITY,
+    sensorType = Sensor.TYPE_PROXIMITY,
     uncalibratedSensorType = -1
 )
