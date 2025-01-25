@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.home
+package com.singularityindonesia.opendaimon.shell.home.scene
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -13,7 +13,7 @@ import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 
 @Composable
-fun GlyphPane(
+fun GlyphScene(
     modifier: Modifier = Modifier
 ) {
     Box(
@@ -34,5 +34,5 @@ fun GlyphPane(
 @Preview
 @Composable
 private fun Preview() {
-    GlyphPane()
+    GlyphScene()
 }

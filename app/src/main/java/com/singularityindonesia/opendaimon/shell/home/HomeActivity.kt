@@ -14,9 +14,10 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import com.singularityindonesia.opendaimon.lib.component.HeaderPage
 import com.singularityindonesia.opendaimon.lib.overlay.BackToStartOverLay
-import com.singularityindonesia.opendaimon.shell.system.AboutPane
-import com.singularityindonesia.opendaimon.shell.system.ControlPane
-import com.singularityindonesia.opendaimon.shell.system.StatusPane
+import com.singularityindonesia.opendaimon.shell.home.scene.GlyphScene
+import com.singularityindonesia.opendaimon.shell.system.pane.AboutPane
+import com.singularityindonesia.opendaimon.shell.system.pane.ControlPane
+import com.singularityindonesia.opendaimon.shell.system.pane.StatusPane
 import kotlinx.coroutines.launch
 
 @Composable
@@ -56,7 +57,7 @@ fun HomeActivity(
             state = pagerState
         ) { index ->
             when (index) {
-                0 -> GlyphPane()
+                0 -> GlyphScene()
                 1 -> StatusPane()
                 2 -> ControlPane(
                     goToScanProtocol = goToScanProtocol

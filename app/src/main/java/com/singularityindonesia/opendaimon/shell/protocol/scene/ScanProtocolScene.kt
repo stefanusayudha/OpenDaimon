@@ -1,16 +1,16 @@
-package com.singularityindonesia.opendaimon.shell.protocol
+package com.singularityindonesia.opendaimon.shell.protocol.scene
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun ScanProtocolPane() {
+fun ScanProtocolScene() {
     Text("Scan Protocol")
 }
 
 @Preview
 @Composable
 private fun Preview() {
-    ScanProtocolPane()
+    ScanProtocolScene()
 }

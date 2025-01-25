@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.splash
+package com.singularityindonesia.opendaimon.shell.splash.scene
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
@@ -8,7 +8,7 @@ import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 
 @Composable
-fun PreloadPane(
+fun PreloadScene(
     modifier: Modifier = Modifier
 ) {
     Box(

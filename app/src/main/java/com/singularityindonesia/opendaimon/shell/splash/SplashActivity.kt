@@ -6,6 +6,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import com.singularityindonesia.opendaimon.shell.splash.scene.PreloadScene
 import kotlinx.coroutines.delay
 
 @Composable
@@ -13,7 +14,7 @@ fun SplashActivity(
     onFinishPreparation: () -> Unit
 ) {
     Scaffold { padding ->
-        PreloadPane(
+        PreloadScene(
             modifier = Modifier.padding(padding)
         )
     }

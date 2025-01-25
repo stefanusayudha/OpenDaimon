@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.system
+package com.singularityindonesia.opendaimon.shell.system.pane
 
 import androidx.compose.foundation.layout.PaddingValues
 import androidx.compose.foundation.layout.fillMaxSize
