@@ -3,7 +3,7 @@ package com.singularityindonesia.opendaimon.sys
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
-import com.singularityindonesia.opendaimon.tmp.daimon.Daimon
+import com.singularityindonesia.daimon.Daimon
 import com.singularityindonesia.sensor.Sensors
 import com.singularityindonesia.serial.SerialMonitor
 

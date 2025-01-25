@@ -72,4 +72,5 @@ dependencies {
     implementation(libs.kotlinx.serialization.json)
     implementation(project(":lib:sensor"))
     implementation(project(":lib:serial"))
+    implementation(project(":lib:daimon"))
 }

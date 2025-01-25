@@ -5,11 +5,11 @@ import android.os.Bundle
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
+import com.singularityindonesia.daimon.Daimon
 import com.singularityindonesia.opendaimon.lib.theme.OpenDaimonTheme
 import com.singularityindonesia.opendaimon.sys.ProvideDaimon
 import com.singularityindonesia.opendaimon.sys.ProvideSensor
 import com.singularityindonesia.opendaimon.sys.ProvideSerialMonitor
-import com.singularityindonesia.opendaimon.tmp.daimon.Daimon
 import com.singularityindonesia.sensor.Sensors
 import com.singularityindonesia.serial.SerialHost
 
