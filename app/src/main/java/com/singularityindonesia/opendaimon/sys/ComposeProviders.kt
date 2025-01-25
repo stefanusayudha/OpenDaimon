@@ -4,6 +4,7 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
 import androidx.compose.runtime.staticCompositionLocalOf
 import com.singularityindonesia.opendaimon.tmp.daimon.Daimon
+import com.singularityindonesia.sensor.Sensors
 import com.singularityindonesia.serial.SerialMonitor
 
 val LocalDaimon = staticCompositionLocalOf<Daimon> { error("No sensor provided") }
@@ -20,6 +21,15 @@ val LocalSerialMonitor = staticCompositionLocalOf<SerialMonitor> { error("No sen
 @Composable
 fun ProvideSerialMonitor(serialMonitor: SerialMonitor, content: @Composable () -> Unit) {
     CompositionLocalProvider(LocalSerialMonitor provides serialMonitor) {
+        content()
+    }
+}
+
+val LocalSensor = staticCompositionLocalOf<Sensors> { error("No sensor provided") }
+
+@Composable
+fun ProvideSensor(sensors: Sensors, content: @Composable () -> Unit) {
+    CompositionLocalProvider(LocalSensor provides sensors) {
         content()
     }
 }

@@ -2,23 +2,26 @@ package com.singularityindonesia.opendaimon
 
 import android.content.Context
 import android.os.Bundle
-import android.widget.Toast
 import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.singularityindonesia.opendaimon.lib.theme.OpenDaimonTheme
 import com.singularityindonesia.opendaimon.sys.ProvideDaimon
+import com.singularityindonesia.opendaimon.sys.ProvideSensor
 import com.singularityindonesia.opendaimon.sys.ProvideSerialMonitor
 import com.singularityindonesia.opendaimon.tmp.daimon.Daimon
+import com.singularityindonesia.sensor.Sensors
 import com.singularityindonesia.serial.SerialHost
 
 class MainActivity : ComponentActivity() {
 
     private lateinit var serialHost: SerialHost
+    private lateinit var sensors: Sensors
     private lateinit var daimon: Daimon
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
+        initiateSensors()
         initiateSerialHost()
         initiateDaimon()
     }
@@ -29,10 +32,11 @@ class MainActivity : ComponentActivity() {
         enableEdgeToEdge()
         setContent {
             OpenDaimonTheme {
-                // fixme: all this should be provided by the daimon
-                ProvideSerialMonitor(serialHost.monitor) {
-                    ProvideDaimon(daimon) {
-                        MainPlot()
+                ProvideSensor(sensors) {
+                    ProvideSerialMonitor(serialHost.monitor) {
+                        ProvideDaimon(daimon) {
+                            MainPlot()
+                        }
                     }
                 }
             }
@@ -41,36 +45,23 @@ class MainActivity : ComponentActivity() {
 
     override fun onResume() {
         super.onResume()
-        // todo: for now, the daemon will only be active on resume
-        startDaemon()
+        sensors.start()
     }
 
     override fun onPause() {
         super.onPause()
-        // todo: for now, the daemon will only be active on resume
-        stopDaemon()
-    }
-
-    private fun startDaemon() {
-        // fixme: for now we will not use daemon directly
-        runCatching {
-            daimon.start()
-        }.onFailure {
-            Toast.makeText(this, "Daemon Start Failed", Toast.LENGTH_SHORT).show()
-        }.onSuccess {
-            Toast.makeText(this, "Daemon Started Successfully", Toast.LENGTH_SHORT).show()
-        }
-    }
-
-    private fun stopDaemon() {
-        daimon.stop()
+        sensors.stop()
     }
 
     private fun initiateDaimon() {
-        daimon = Daimon(this)
+        daimon = Daimon()
     }
 
     private fun initiateSerialHost() {
         serialHost = SerialHost(this)
+    }
+
+    private fun initiateSensors() {
+        sensors = Sensors(this)
     }
 }

@@ -14,18 +14,18 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.singularityindonesia.opendaimon.sys.LocalDaimon
+import com.singularityindonesia.opendaimon.sys.LocalSensor
 
 // todo: should observe the daimon directly
 @Composable
 fun StatusPane(
     modifier: Modifier = Modifier
 ) {
-    val daimon = LocalDaimon.current
+    val sensors = LocalSensor.current
 
-    val items by remember(daimon.sensors) {
+    val items by remember(sensors) {
         derivedStateOf {
-            with(daimon.sensors) {
+            with(sensors) {
                 listOf(
                     accelerometer to "Accelerometer",
                     gravity to "Gravity",
