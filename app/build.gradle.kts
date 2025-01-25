@@ -73,4 +73,5 @@ dependencies {
     implementation(project(":lib:sensor"))
     implementation(project(":lib:serial"))
     implementation(project(":lib:daimon"))
+    implementation(project(":lib:cns"))
 }
