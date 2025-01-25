@@ -23,7 +23,9 @@ import kotlinx.coroutines.isActive
 import kotlinx.coroutines.launch
 import java.io.IOException
 import java.time.LocalTime
+import java.time.LocalTime.now
 import java.time.format.DateTimeFormatter
+import java.time.format.DateTimeFormatter.ofPattern
 
 class SerialMonitor(
     private val host: SerialHost
@@ -74,7 +76,7 @@ class SerialMonitor(
                 simpleMonitorMessageBuffer.update { list ->
                     list.plus(
                         "${
-                            LocalTime.now().format(DateTimeFormatter.ofPattern("HH:mm:ss"))
+                            now().format(ofPattern("HH:mm:ss"))
                         } $message"
                     ).takeLast(100)
                 }
