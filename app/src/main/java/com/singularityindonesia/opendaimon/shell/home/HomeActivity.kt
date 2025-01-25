@@ -1,6 +1,7 @@
 package com.singularityindonesia.opendaimon.shell.home
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
 import androidx.compose.foundation.layout.statusBarsPadding
@@ -14,6 +15,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
 import com.singularityindonesia.opendaimon.lib.component.HeaderPage
+import com.singularityindonesia.opendaimon.lib.overlay.BackDirection
 import com.singularityindonesia.opendaimon.lib.overlay.BackToStartOverLay
 import com.singularityindonesia.opendaimon.shell.home.scene.GlyphScene
 import com.singularityindonesia.opendaimon.shell.system.pane.AboutPane
@@ -30,10 +32,14 @@ fun HomeActivity(
     val pagerState = rememberPagerState(initialPage = 1) { 5 }
 
     BackHandler(
-        enabled = pagerState.currentPage != 0
+        enabled = pagerState.currentPage != 1
     ) {
         scope.launch {
-            pagerState.animateScrollToPage(pagerState.currentPage - 1)
+            if (pagerState.currentPage > 1)
+                pagerState.animateScrollToPage(pagerState.currentPage - 1)
+
+            if (pagerState.currentPage < 1)
+                pagerState.animateScrollToPage(pagerState.currentPage + 1)
         }
     }
 
@@ -57,13 +63,16 @@ fun HomeActivity(
         }
     ) { padding ->
         HorizontalPager(
-            modifier = Modifier.padding(padding),
+            modifier = Modifier
+                .fillMaxSize()
+                .padding(padding),
             state = pagerState
         ) { index ->
             when (index) {
                 0 -> SerialMonitorPane(
                     modifier = Modifier.padding(horizontal = 16.dp)
                 )
+
                 1 -> GlyphScene()
                 2 -> StatusPane()
                 3 -> ControlPane(
@@ -75,10 +84,14 @@ fun HomeActivity(
         }
 
         BackToStartOverLay(
-            showButton = pagerState.currentPage > 1
+            showButton = pagerState.currentPage > 1 || pagerState.currentPage < 1,
+            backDirection = if (pagerState.currentPage < 1)
+                BackDirection.RIGHT
+            else
+                BackDirection.LEFT
         ) {
             scope.launch {
-                pagerState.animateScrollToPage(0)
+                pagerState.animateScrollToPage(1)
             }
         }
     }
