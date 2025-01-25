@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.singularityindonesia.opendaimon.sys.daimon.LocalDaimon
+import com.singularityindonesia.opendaimon.tmp.daimon.LocalDaimon
 
 // todo: should observe the daimon directly
 @Composable

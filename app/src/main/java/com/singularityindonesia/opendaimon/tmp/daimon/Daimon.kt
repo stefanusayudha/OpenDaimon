@@ -1,7 +1,7 @@
-package com.singularityindonesia.opendaimon.sys.daimon
+package com.singularityindonesia.opendaimon.tmp.daimon
 
 import android.content.Context
-import com.singularityindonesia.opendaimon.sys.daimon.lib.HormoneGland
+import com.singularityindonesia.opendaimon.tmp.daimon.lib.HormoneGland
 import com.singularityindonesia.sensor.Sensors
 import com.singularityindonesia.serial.SerialBus
 import kotlinx.coroutines.CoroutineScope

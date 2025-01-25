@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.sys.daimon.lib
+package com.singularityindonesia.opendaimon.tmp.daimon.lib
 
 import android.content.Context
 import android.media.MediaRecorder
@@ -9,14 +9,13 @@ import androidx.compose.foundation.layout.Row
 import androidx.compose.foundation.layout.size
 import androidx.compose.foundation.shape.RoundedCornerShape
 import androidx.compose.runtime.Composable
-import androidx.compose.runtime.LaunchedEffect
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.singularityindonesia.opendaimon.sys.lib.io.AudioRecorder
+import com.singularityindonesia.opendaimon.tmp.lib.io.AudioRecorder
 import java.io.File
 
 // todo: should be attached to the daimon

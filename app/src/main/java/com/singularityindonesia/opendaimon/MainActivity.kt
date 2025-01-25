@@ -7,8 +7,8 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.singularityindonesia.opendaimon.shell.lib.theme.OpenDaimonTheme
-import com.singularityindonesia.opendaimon.sys.daimon.Daimon
-import com.singularityindonesia.opendaimon.sys.daimon.ProvideDaimon
+import com.singularityindonesia.opendaimon.tmp.daimon.Daimon
+import com.singularityindonesia.opendaimon.tmp.daimon.ProvideDaimon
 
 class MainActivity : ComponentActivity() {
 
