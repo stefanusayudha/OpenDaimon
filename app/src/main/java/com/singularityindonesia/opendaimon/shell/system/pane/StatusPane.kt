@@ -14,7 +14,7 @@ import androidx.compose.ui.Modifier
 import androidx.compose.ui.draw.alpha
 import androidx.compose.ui.tooling.preview.Preview
 import androidx.compose.ui.unit.dp
-import com.singularityindonesia.opendaimon.tmp.daimon.LocalDaimon
+import com.singularityindonesia.opendaimon.sys.LocalDaimon
 
 // todo: should observe the daimon directly
 @Composable
@@ -59,16 +59,16 @@ fun StatusPane(
 //                }
 //            )
 //        }
-        item {
-            ListItem(
-                headlineContent = {
-                    Text("Usb Device")
-                },
-                trailingContent = {
-                    daimon.serialBus.Display()
-                }
-            )
-        }
+//        item {
+//            ListItem(
+//                headlineContent = {
+//                    Text("Usb Device")
+//                },
+//                trailingContent = {
+//                    daimon.serialBus.Display()
+//                }
+//            )
+//        }
         items(items.size) { i ->
             val item = items[i]
             val exist = remember(item) { item.first.exist() }

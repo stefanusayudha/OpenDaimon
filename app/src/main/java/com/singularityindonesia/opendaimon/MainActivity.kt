@@ -7,15 +7,19 @@ import androidx.activity.ComponentActivity
 import androidx.activity.compose.setContent
 import androidx.activity.enableEdgeToEdge
 import com.singularityindonesia.opendaimon.lib.theme.OpenDaimonTheme
+import com.singularityindonesia.opendaimon.sys.ProvideDaimon
+import com.singularityindonesia.opendaimon.sys.ProvideSerialMonitor
 import com.singularityindonesia.opendaimon.tmp.daimon.Daimon
-import com.singularityindonesia.opendaimon.tmp.daimon.ProvideDaimon
+import com.singularityindonesia.serial.SerialHost
 
 class MainActivity : ComponentActivity() {
 
+    private lateinit var serialHost: SerialHost
     private lateinit var daimon: Daimon
 
     override fun attachBaseContext(newBase: Context?) {
         super.attachBaseContext(newBase)
+        initiateSerialHost()
         initiateDaimon()
     }
 
@@ -26,8 +30,10 @@ class MainActivity : ComponentActivity() {
         setContent {
             OpenDaimonTheme {
                 // fixme: all this should be provided by the daimon
-                ProvideDaimon(daimon) {
-                    MainPlot()
+                ProvideSerialMonitor(serialHost.monitor) {
+                    ProvideDaimon(daimon) {
+                        MainPlot()
+                    }
                 }
             }
         }
@@ -62,5 +68,9 @@ class MainActivity : ComponentActivity() {
 
     private fun initiateDaimon() {
         daimon = Daimon(this)
+    }
+
+    private fun initiateSerialHost() {
+        serialHost = SerialHost(this)
     }
 }
