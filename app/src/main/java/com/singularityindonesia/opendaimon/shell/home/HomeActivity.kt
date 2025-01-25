@@ -1,6 +1,10 @@
 package com.singularityindonesia.opendaimon.shell.home
 
 import androidx.activity.compose.BackHandler
+import androidx.compose.animation.AnimatedVisibility
+import androidx.compose.animation.EnterTransition
+import androidx.compose.animation.slideInVertically
+import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -49,17 +53,22 @@ fun HomeActivity(
             .systemBarsPadding()
             .navigationBarsPadding(),
         topBar = {
-            if (pagerState.currentPage == 1) return@Scaffold
-            HeaderPage(
-                titleText = when (pagerState.currentPage) {
-                    0 -> "Monitor"
-                    1 -> ""
-                    2 -> "Status"
-                    3 -> "Control"
-                    4 -> "About"
-                    else -> ""
-                }
-            )
+            AnimatedVisibility(
+                visible =pagerState.currentPage != 1,
+                enter = slideInVertically(),
+                exit = slideOutVertically()
+            ) {
+                HeaderPage(
+                    titleText = when (pagerState.currentPage) {
+                        0 -> "Monitor"
+                        1 -> ""
+                        2 -> "Status"
+                        3 -> "Control"
+                        4 -> "About"
+                        else -> ""
+                    }
+                )
+            }
         }
     ) { padding ->
         HorizontalPager(
