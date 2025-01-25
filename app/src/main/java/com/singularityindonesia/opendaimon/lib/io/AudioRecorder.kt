@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.tmp.lib.io
+package com.singularityindonesia.opendaimon.lib.io
 
 import android.media.MediaRecorder
 import android.os.Handler

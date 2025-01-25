@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.lib.theme
+package com.singularityindonesia.opendaimon.lib.theme
 
 import androidx.compose.material3.Typography
 import androidx.compose.ui.text.TextStyle

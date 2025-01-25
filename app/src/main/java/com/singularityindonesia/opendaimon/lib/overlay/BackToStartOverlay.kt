@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.lib.overlay
+package com.singularityindonesia.opendaimon.lib.overlay
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

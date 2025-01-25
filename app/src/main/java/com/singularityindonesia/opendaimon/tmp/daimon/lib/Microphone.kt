@@ -15,7 +15,7 @@ import androidx.compose.ui.draw.clip
 import androidx.compose.ui.graphics.Color
 import androidx.compose.ui.unit.dp
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
-import com.singularityindonesia.opendaimon.tmp.lib.io.AudioRecorder
+import com.singularityindonesia.opendaimon.lib.io.AudioRecorder
 import java.io.File
 
 // todo: should be attached to the daimon
