@@ -35,7 +35,7 @@ class SerialMonitor(
         onMessageReceived: (String) -> Unit
     ) {
         // todo: connect to all available devices
-        val connection = host.getDevices().firstOrNull()?.let(host::connect)
+        val connection = host.getDevices().firstOrNull()?.let(host::connect) ?: return
 
         // todo: make byte buffer adjustable
         val buffer = ByteArray(1024)
@@ -44,7 +44,7 @@ class SerialMonitor(
         val timeout = 1000
 
         coroutineScope.launch(Dispatchers.IO) {
-            while (isActive && connection != null) {
+            while (isActive) {
                 try {
                     val numBytesRead = connection.read(buffer, timeout)
                     if (numBytesRead > 0) {

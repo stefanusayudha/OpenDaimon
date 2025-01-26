@@ -7,10 +7,16 @@ import android.hardware.SensorManager
 import androidx.compose.foundation.layout.Column
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
+import androidx.compose.runtime.State
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
 import androidx.lifecycle.compose.collectAsStateWithLifecycle
+import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.flow.MutableStateFlow
+import kotlinx.coroutines.flow.SharingStarted
+import kotlinx.coroutines.flow.StateFlow
+import kotlinx.coroutines.flow.asStateFlow
+import kotlinx.coroutines.flow.stateIn
 
 interface Sensor3D : MSensor, SensorEventListener {
     override val sensorManager: SensorManager?
@@ -21,11 +27,11 @@ interface Sensor3D : MSensor, SensorEventListener {
     override val uncalibratedSensor: Sensor?
     override val uncalibratedSensorType: Int
 
-    val state: MutableStateFlow<Triple<Float, Float, Float>>
-    val accuracy: MutableStateFlow<Int>
+    val state: StateFlow<Triple<Float, Float, Float>>
+    val accuracy: StateFlow<Int>
 
-    val uncalibrated: MutableStateFlow<Triple<Float, Float, Float>>
-    val uncalibratedAccuracy: MutableStateFlow<Int>
+    val uncalibrated: StateFlow<Triple<Float, Float, Float>>
+    val uncalibratedAccuracy: StateFlow<Int>
 
     override fun exist(): Boolean {
         return sensor != null || uncalibratedSensor != null
@@ -75,12 +81,14 @@ interface Sensor3D : MSensor, SensorEventListener {
 }
 
 fun sensor3d(
+    coroutineScope: CoroutineScope,
     sensorManager: SensorManager?,
     sensorDelay: Int,
     sensorType: Int,
     uncalibratedSensorType: Int
 ): Sensor3D {
     return object : Sensor3D {
+        override val coroutineScope: CoroutineScope = coroutineScope
         override val sensorManager: SensorManager? = sensorManager
         override val sensorType: Int = sensorType
         override val uncalibratedSensorType: Int = uncalibratedSensorType
@@ -89,11 +97,23 @@ fun sensor3d(
         override val uncalibratedSensor = sensorManager?.getDefaultSensor(uncalibratedSensorType)
 
 
-        override val state = MutableStateFlow(Triple(0f, 0f, 0f))
-        override val accuracy = MutableStateFlow(0)
+        private val _state = MutableStateFlow(Triple(0f, 0f, 0f))
+        override val state = _state.asStateFlow()
+            .stateIn(coroutineScope, SharingStarted.WhileSubscribed(500L), _state.value)
+        private val _accuracy = MutableStateFlow(0)
+        override val accuracy = _accuracy.asStateFlow()
+            .stateIn(coroutineScope, SharingStarted.WhileSubscribed(500L), _accuracy.value)
 
-        override val uncalibrated = MutableStateFlow(Triple(0f, 0f, 0f))
-        override val uncalibratedAccuracy = MutableStateFlow(0)
+        private val _uncalibrated = MutableStateFlow(Triple(0f, 0f, 0f))
+        override val uncalibrated = _uncalibrated.asStateFlow()
+            .stateIn(coroutineScope, SharingStarted.WhileSubscribed(500L), _uncalibrated.value)
+        private val _uncalibratedAccuracy = MutableStateFlow(0)
+        override val uncalibratedAccuracy = _uncalibratedAccuracy.asStateFlow()
+            .stateIn(
+                coroutineScope,
+                SharingStarted.WhileSubscribed(500L),
+                _uncalibratedAccuracy.value
+            )
 
         override fun start() {
             sensorManager?.registerListener(
@@ -120,14 +140,14 @@ fun sensor3d(
                         val x = it.values[0]
                         val y = it.values[1]
                         val z = it.values[2]
-                        state.value = Triple(x, y, z)
+                        _state.value = Triple(x, y, z)
                     }
 
                     uncalibratedSensorType -> {
                         val x = it.values[0]
                         val y = it.values[1]
                         val z = it.values[2]
-                        uncalibrated.value = Triple(x, y, z)
+                        _uncalibrated.value = Triple(x, y, z)
                     }
 
                     else -> {}
@@ -138,11 +158,11 @@ fun sensor3d(
         override fun onAccuracyChanged(sensor: Sensor?, accuracy: Int) {
             when (sensor?.type) {
                 sensorType -> {
-                    this.accuracy.value = accuracy
+                    _accuracy.value = accuracy
                 }
 
                 uncalibratedSensorType -> {
-                    this.uncalibratedAccuracy.value = accuracy
+                    _uncalibratedAccuracy.value = accuracy
                 }
 
                 else -> {}

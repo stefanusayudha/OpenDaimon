@@ -5,8 +5,10 @@ import android.hardware.SensorManager
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Alignment
 import androidx.compose.ui.Modifier
+import kotlinx.coroutines.CoroutineScope
 
 interface MSensor {
+    val coroutineScope: CoroutineScope
     val sensorManager: SensorManager?
 
     val sensor: Sensor?

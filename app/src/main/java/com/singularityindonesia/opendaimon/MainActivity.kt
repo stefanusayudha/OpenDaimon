@@ -17,15 +17,21 @@ import com.singularityindonesia.sensor.Sensors
 import com.singularityindonesia.serial.SerialHost
 import kotlinx.coroutines.CoroutineScope
 import kotlinx.coroutines.Dispatchers
+import kotlinx.coroutines.SupervisorJob
 import java.io.File
 
 class MainActivity : ComponentActivity() {
-
-    private val ioScope = CoroutineScope(Dispatchers.IO)
     private lateinit var serialHost: SerialHost
+
+    private val sensorsScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private lateinit var sensors: Sensors
+
+    private val cnsScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private lateinit var cns: CNS
+
     private lateinit var daimon: Daimon
+
+    private val modelStorageScope = CoroutineScope(Dispatchers.IO + SupervisorJob())
     private lateinit var modelStorage: ModelStorage
 
     override fun attachBaseContext(newBase: Context?) {
@@ -75,15 +81,15 @@ class MainActivity : ComponentActivity() {
     }
 
     private fun initiateSensors() {
-        sensors = Sensors(this)
+        sensors = Sensors(this, coroutineScope = sensorsScope)
     }
 
     private fun initiateModelStorage() {
         val sourceFile = File(getExternalFilesDir(null), "model.txt")
-        modelStorage = ModelStorage(coroutineScope = ioScope, sourceFile)
+        modelStorage = ModelStorage(coroutineScope = modelStorageScope, sourceFile)
     }
 
     private fun initiateCns() {
-        cns = CNS(coroutineScope = ioScope, modelStorage = modelStorage)
+        cns = CNS(coroutineScope = cnsScope, modelStorage = modelStorage)
     }
 }

@@ -13,47 +13,105 @@ import com.singularityindonesia.sensor.sensors.LinearAccelerationSensor
 import com.singularityindonesia.sensor.sensors.PressureSensor
 import com.singularityindonesia.sensor.sensors.ProximitySensor
 import com.singularityindonesia.sensor.sensors.RotationSensor
+import kotlinx.coroutines.CoroutineScope
+import kotlinx.coroutines.SupervisorJob
+import kotlinx.coroutines.plus
 
-// todo: turn on sensor on demand
+// todo: turncoroutineScope +  on sensor on demand
 class Sensors(
+    coroutineScope: CoroutineScope,
     sensorManager: SensorManager?
 ) {
 
-    constructor(context: Context) : this(context.getSystemService(Context.SENSOR_SERVICE) as SensorManager)
+    constructor(context: Context, coroutineScope: CoroutineScope) : this(coroutineScope, context.getSystemService(Context.SENSOR_SERVICE) as SensorManager)
 
     // todo: adjust the delay on demand
-    val accelerometer = Accelerometer(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val accelerometerSuperVisor = SupervisorJob()
+    val accelerometer = Accelerometer(
+        coroutineScope + accelerometerSuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val gravity = GravitySensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val gravitySuperVisor = SupervisorJob()
+    val gravity = GravitySensor(
+        coroutineScope + gravitySuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val linearAcceleration =
-        LinearAccelerationSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val linearAccelerationSuperVisor = SupervisorJob()
+    val linearAcceleration = LinearAccelerationSensor(
+        coroutineScope + linearAccelerationSuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val gyroscope = GyroscopeSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val gyroscopeSuperVisor = SupervisorJob()
+    val gyroscope = GyroscopeSensor(
+        coroutineScope + gyroscopeSuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val rotation = RotationSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val rotationSuperVisor = SupervisorJob()
+    val rotation = RotationSensor(
+        coroutineScope + rotationSuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val geoRotation = GeoMagnetRotationSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val geoRotationSuperVisor = SupervisorJob()
+    val geoRotation = GeoMagnetRotationSensor(
+        coroutineScope + geoRotationSuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val proximity = ProximitySensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val proximitySuperVisor = SupervisorJob()
+    val proximity = ProximitySensor(
+        coroutineScope + proximitySuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val light = LightSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val lightSuperVisor = SupervisorJob()
+    val light = LightSensor(
+        coroutineScope + lightSuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val ambienceTemp = AmbienceTemperatureSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val ambienceTempSuperVisor = SupervisorJob()
+    val ambienceTemp = AmbienceTemperatureSensor(
+        coroutineScope + ambienceTempSuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val pressure = PressureSensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val pressureSuperVisor = SupervisorJob()
+    val pressure = PressureSensor(
+        coroutineScope + pressureSuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     // todo: adjust the delay on demand
-    val humidity = HumiditySensor(sensorManager, SensorManager.SENSOR_DELAY_NORMAL)
+    private val humiditySuperVisor = SupervisorJob()
+    val humidity = HumiditySensor(
+        coroutineScope + humiditySuperVisor,
+        sensorManager,
+        SensorManager.SENSOR_DELAY_NORMAL
+    )
 
     fun start() {
         startAll()
