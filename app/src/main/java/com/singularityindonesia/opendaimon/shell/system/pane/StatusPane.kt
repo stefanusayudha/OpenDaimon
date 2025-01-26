@@ -69,6 +69,17 @@ fun StatusPane(
 //                }
 //            )
 //        }
+        item {
+            ListItem(
+                headlineContent = {
+                    Text("Neurons Count")
+                },
+                trailingContent = {
+                    // todo: display neurons count
+                    Text("0")
+                },
+            )
+        }
         items(items.size) { i ->
             val item = items[i]
             val exist = remember(item) { item.first.exist() }
