@@ -9,6 +9,7 @@ import androidx.navigation.navArgument
 import com.singularityindonesia.opendaimon.shell.home.HomeActivity
 import com.singularityindonesia.opendaimon.shell.protocol.ProtocolActivity
 import com.singularityindonesia.opendaimon.shell.splash.SplashActivity
+import com.singularityindonesia.opendaimon.shell.system.SystemActivity
 
 @Composable
 fun MainPlot() {
@@ -32,6 +33,9 @@ fun MainPlot() {
             HomeActivity(
                 goToScanProtocol = {
                     controller.navigate("protocol/scan")
+                },
+                goToNeuronGraph = {
+                    controller.navigate("system/neuron-graph")
                 }
             )
         }
@@ -44,6 +48,24 @@ fun MainPlot() {
             val path = backStackEntry.arguments?.getString("path")
 
             ProtocolActivity(
+                path = path.orEmpty(),
+                returnBack = {
+                    controller.popBackStack()
+                }
+            )
+        }
+
+        composable(
+            route = "system/{path}",
+            arguments = listOf(
+                navArgument("path") {
+                    type = NavType.StringType
+                }
+            )
+        ) { backStackEntry ->
+            val path = backStackEntry.arguments?.getString("path")
+
+            SystemActivity(
                 path = path.orEmpty(),
                 returnBack = {
                     controller.popBackStack()

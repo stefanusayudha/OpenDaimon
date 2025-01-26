@@ -30,7 +30,8 @@ import kotlinx.coroutines.launch
 
 @Composable
 fun HomeActivity(
-    goToScanProtocol: () -> Unit
+    goToScanProtocol: () -> Unit = {},
+    goToNeuronGraph: () -> Unit = {}
 ) {
     val scope = rememberCoroutineScope()
     val pagerState = rememberPagerState(initialPage = 1) { 5 }
@@ -80,7 +81,9 @@ fun HomeActivity(
             when (index) {
                 0 -> SerialMonitorPane()
                 1 -> GlyphScene()
-                2 -> StatusPane()
+                2 -> StatusPane(
+                    goToNeuronGraph = goToNeuronGraph
+                )
                 3 -> ControlPane(
                     goToScanProtocol = goToScanProtocol
                 )
@@ -106,7 +109,5 @@ fun HomeActivity(
 @Preview
 @Composable
 private fun Preview() {
-    HomeActivity(
-        goToScanProtocol = {}
-    )
+    HomeActivity()
 }
