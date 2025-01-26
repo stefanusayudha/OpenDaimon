@@ -85,7 +85,8 @@ fun HomeActivity(
                     goToNeuronGraph = goToNeuronGraph
                 )
                 3 -> ControlPane(
-                    goToScanProtocol = goToScanProtocol
+                    goToScanProtocol = goToScanProtocol,
+                    goToNeuronGraph = goToNeuronGraph
                 )
 
                 4 -> AboutPane()

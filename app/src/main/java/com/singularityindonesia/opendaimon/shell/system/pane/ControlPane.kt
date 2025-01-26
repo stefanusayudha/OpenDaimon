@@ -16,7 +16,8 @@ import androidx.compose.ui.tooling.preview.Preview
 @Composable
 fun ControlPane(
     modifier: Modifier = Modifier,
-    goToScanProtocol: () -> Unit
+    goToScanProtocol: () -> Unit = {},
+    goToNeuronGraph: () -> Unit = {}
 ) {
 
     LazyColumn(
@@ -28,6 +29,12 @@ fun ControlPane(
             ControlItem(
                 text = "Scan Protocol",
                 action = goToScanProtocol
+            )
+        }
+        item {
+            ControlItem(
+                text = "Neuron Graph",
+                action = goToNeuronGraph
             )
         }
     }
@@ -61,7 +68,5 @@ private fun ControlItem(
 @Preview
 @Composable
 private fun Preview() {
-    ControlPane(
-        goToScanProtocol = {}
-    )
+    ControlPane()
 }
