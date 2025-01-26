@@ -5,6 +5,6 @@ typealias NeuronID = Double
 
 data class Neuron(
     val position: Position3D,
-    val dendritConnections: Array<NeuronID>,
-    val synapseConnection: Array<NeuronID>
+    val dendritConnections: Array<Pair<Signal, NeuronID>>,
+    val synapseConnection: Array<Pair<Signal,NeuronID>>
 )
