@@ -11,6 +11,6 @@ class ModelStorage(
     private val file: File
 ) {
     suspend fun load(): List<Lobe> = withContext(Dispatchers.IO) {
-        TODO()
+        emptyList() // fixme: load from storage
     }
 }
