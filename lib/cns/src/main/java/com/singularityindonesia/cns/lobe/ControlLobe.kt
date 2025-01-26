@@ -1,5 +1,5 @@
 package com.singularityindonesia.cns.lobe
 
-class ControlLobe: Lobe {
+import com.singularityindonesia.cns.neuron.Neuron
 
-}
+class ControlLobe(override val neurons: List<Neuron>) : Lobe

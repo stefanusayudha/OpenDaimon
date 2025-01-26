@@ -4,6 +4,7 @@ import com.singularityindonesia.cns.lib.Position3D
 
 typealias NeuronID = Long
 typealias Weight = Double
+typealias Signal = ByteArray
 
 data class Neuron(
     val position: Position3D,
