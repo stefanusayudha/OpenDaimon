@@ -1,6 +1,7 @@
 package com.singularityindonesia.opendaimon.shell.system.pane
 
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.foundation.layout.offset
 import androidx.compose.foundation.lazy.LazyColumn
 import androidx.compose.material.icons.Icons
 import androidx.compose.material.icons.automirrored.rounded.ArrowForward
@@ -12,6 +13,8 @@ import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
+import androidx.compose.ui.unit.IntOffset
+import androidx.compose.ui.unit.dp
 
 @Composable
 fun ControlPane(
@@ -54,6 +57,9 @@ private fun ControlItem(
         },
         trailingContent = {
             IconButton(
+                modifier = Modifier.offset {
+                    IntOffset(16.dp.roundToPx(), 0)
+                },
                 onClick = action
             ) {
                 Icon(
