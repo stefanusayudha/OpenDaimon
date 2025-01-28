@@ -74,4 +74,5 @@ dependencies {
     implementation(project(":lib:serial"))
     implementation(project(":lib:daimon"))
     implementation(project(":lib:cns"))
+    implementation(project(":lib:constellation"))
 }
