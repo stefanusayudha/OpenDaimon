@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.splash.scene
+package com.singularityindonesia.opendaimon.shell.pane
 
 import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize

@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.protocol
+package com.singularityindonesia.opendaimon.shell.activity
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
@@ -6,10 +6,10 @@ import androidx.compose.ui.Modifier
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
-import com.singularityindonesia.opendaimon.shell.protocol.scene.ScanProtocolScene
+import com.singularityindonesia.opendaimon.shell.pane.NeuronGraphPane
 
 @Composable
-fun ProtocolPlot(
+fun SystemPlot(
     modifier: Modifier = Modifier,
     path: String,
     controller: NavHostController
@@ -22,13 +22,13 @@ fun ProtocolPlot(
         composable(
             route = "home"
         ) {
-            Text("Protocol Home Page")
+            Text("System Home Page")
         }
 
         composable(
-            route = "scan"
+            route = "neuron-graph"
         ) {
-            ScanProtocolScene()
+            NeuronGraphPane()
         }
     }
 }

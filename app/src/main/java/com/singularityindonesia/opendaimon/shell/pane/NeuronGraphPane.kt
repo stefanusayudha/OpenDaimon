@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.system.pane
+package com.singularityindonesia.opendaimon.shell.pane
 
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable

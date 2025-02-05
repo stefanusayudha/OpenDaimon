@@ -6,10 +6,10 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.singularityindonesia.opendaimon.shell.home.HomeActivity
-import com.singularityindonesia.opendaimon.shell.protocol.ProtocolActivity
-import com.singularityindonesia.opendaimon.shell.splash.SplashActivity
-import com.singularityindonesia.opendaimon.shell.system.SystemActivity
+import com.singularityindonesia.opendaimon.shell.activity.HomeActivity
+import com.singularityindonesia.opendaimon.shell.activity.ProtocolActivity
+import com.singularityindonesia.opendaimon.shell.activity.SplashActivity
+import com.singularityindonesia.opendaimon.shell.activity.SystemActivity
 
 @Composable
 fun MainPlot() {

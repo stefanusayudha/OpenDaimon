@@ -1,8 +1,7 @@
-package com.singularityindonesia.opendaimon.shell.home
+package com.singularityindonesia.opendaimon.shell.activity
 
 import androidx.activity.compose.BackHandler
 import androidx.compose.animation.AnimatedVisibility
-import androidx.compose.animation.EnterTransition
 import androidx.compose.animation.slideInVertically
 import androidx.compose.animation.slideOutVertically
 import androidx.compose.foundation.layout.fillMaxSize
@@ -17,15 +16,14 @@ import androidx.compose.runtime.Composable
 import androidx.compose.runtime.rememberCoroutineScope
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
-import androidx.compose.ui.unit.dp
 import com.singularityindonesia.opendaimon.lib.component.HeaderPage
 import com.singularityindonesia.opendaimon.lib.overlay.BackDirection
 import com.singularityindonesia.opendaimon.lib.overlay.BackToStartOverLay
-import com.singularityindonesia.opendaimon.shell.home.scene.GlyphScene
-import com.singularityindonesia.opendaimon.shell.system.pane.AboutPane
-import com.singularityindonesia.opendaimon.shell.system.pane.ControlPane
-import com.singularityindonesia.opendaimon.shell.system.pane.SerialMonitorPane
-import com.singularityindonesia.opendaimon.shell.system.pane.StatusPane
+import com.singularityindonesia.opendaimon.shell.pane.GlyphPane
+import com.singularityindonesia.opendaimon.shell.pane.AboutPane
+import com.singularityindonesia.opendaimon.shell.pane.ControlPane
+import com.singularityindonesia.opendaimon.shell.pane.SerialMonitorPane
+import com.singularityindonesia.opendaimon.shell.pane.StatusPane
 import kotlinx.coroutines.launch
 
 @Composable
@@ -80,7 +78,7 @@ fun HomeActivity(
         ) { index ->
             when (index) {
                 0 -> SerialMonitorPane()
-                1 -> GlyphScene()
+                1 -> GlyphPane()
                 2 -> StatusPane(
                     goToNeuronGraph = goToNeuronGraph
                 )

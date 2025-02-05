@@ -1,26 +1,27 @@
-package com.singularityindonesia.opendaimon.shell.system.pane
+package com.singularityindonesia.opendaimon.shell.pane
 
-import androidx.compose.foundation.layout.Column
+import androidx.compose.foundation.layout.Box
 import androidx.compose.foundation.layout.fillMaxSize
+import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
 import androidx.compose.ui.tooling.preview.Preview
 
 @Composable
-fun LogsPane(
+fun FacePane(
     modifier: Modifier = Modifier
 ) {
-    Column(
+    Box(
         modifier = Modifier
             .fillMaxSize()
             .then(modifier)
     ) {
-
+        Text("Face")
     }
 }
 
 @Preview
 @Composable
 private fun Preview() {
-    LogsPane()
+    FacePane()
 }

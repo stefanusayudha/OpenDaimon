@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.protocol
+package com.singularityindonesia.opendaimon.shell.activity
 
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding

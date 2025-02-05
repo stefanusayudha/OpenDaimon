@@ -9,10 +9,10 @@ import com.singularityindonesia.cns.CNS
 import com.singularityindonesia.cns.lib.ModelStorage
 import com.singularityindonesia.daimon.Daimon
 import com.singularityindonesia.opendaimon.lib.theme.OpenDaimonTheme
-import com.singularityindonesia.opendaimon.sys.ProvideCNS
-import com.singularityindonesia.opendaimon.sys.ProvideDaimon
-import com.singularityindonesia.opendaimon.sys.ProvideSensor
-import com.singularityindonesia.opendaimon.sys.ProvideSerialMonitor
+import com.singularityindonesia.opendaimon.lib.sys.ProvideCNS
+import com.singularityindonesia.opendaimon.lib.sys.ProvideDaimon
+import com.singularityindonesia.opendaimon.lib.sys.ProvideSensor
+import com.singularityindonesia.opendaimon.lib.sys.ProvideSerialMonitor
 import com.singularityindonesia.sensor.Sensors
 import com.singularityindonesia.serial.SerialHost
 import kotlinx.coroutines.CoroutineScope

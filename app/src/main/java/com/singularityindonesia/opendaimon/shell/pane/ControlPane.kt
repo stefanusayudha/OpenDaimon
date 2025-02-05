@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.system.pane
+package com.singularityindonesia.opendaimon.shell.pane
 
 import androidx.compose.foundation.layout.fillMaxSize
 import androidx.compose.foundation.layout.offset

@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.sys
+package com.singularityindonesia.opendaimon.lib.sys
 
 import androidx.compose.runtime.Composable
 import androidx.compose.runtime.CompositionLocalProvider
@@ -8,7 +8,7 @@ import com.singularityindonesia.daimon.Daimon
 import com.singularityindonesia.sensor.Sensors
 import com.singularityindonesia.serial.SerialMonitor
 
-val LocalDaimon = staticCompositionLocalOf<Daimon> { error("No sensor provided") }
+val LocalDaimon = staticCompositionLocalOf<Daimon> { error("No Daimon provided") }
 
 @Composable
 fun ProvideDaimon(daimon: Daimon, content: @Composable () -> Unit) {
@@ -17,7 +17,7 @@ fun ProvideDaimon(daimon: Daimon, content: @Composable () -> Unit) {
     }
 }
 
-val LocalSerialMonitor = staticCompositionLocalOf<SerialMonitor> { error("No sensor provided") }
+val LocalSerialMonitor = staticCompositionLocalOf<SerialMonitor> { error("No SerialMonitor provided") }
 
 @Composable
 fun ProvideSerialMonitor(serialMonitor: SerialMonitor, content: @Composable () -> Unit) {
@@ -26,7 +26,7 @@ fun ProvideSerialMonitor(serialMonitor: SerialMonitor, content: @Composable () -
     }
 }
 
-val LocalSensor = staticCompositionLocalOf<Sensors> { error("No sensor provided") }
+val LocalSensor = staticCompositionLocalOf<Sensors> { error("No Sensor provided") }
 
 @Composable
 fun ProvideSensor(sensors: Sensors, content: @Composable () -> Unit) {
@@ -35,11 +35,11 @@ fun ProvideSensor(sensors: Sensors, content: @Composable () -> Unit) {
     }
 }
 
-val CNSProvider = staticCompositionLocalOf<CNS> { error("No sensor provided") }
+val LocalCNS = staticCompositionLocalOf<CNS> { error("No CNS provided") }
 
 @Composable
 fun ProvideCNS(cns: CNS, content: @Composable () -> Unit) {
-    CompositionLocalProvider(CNSProvider provides cns) {
+    CompositionLocalProvider(LocalCNS provides cns) {
         content()
     }
 }

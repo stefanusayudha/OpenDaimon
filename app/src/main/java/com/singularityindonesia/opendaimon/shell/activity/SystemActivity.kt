@@ -1,4 +1,4 @@
-package com.singularityindonesia.opendaimon.shell.system
+package com.singularityindonesia.opendaimon.shell.activity
 
 import androidx.compose.foundation.layout.navigationBarsPadding
 import androidx.compose.foundation.layout.padding
@@ -10,7 +10,6 @@ import androidx.compose.runtime.remember
 import androidx.compose.ui.Modifier
 import androidx.navigation.compose.rememberNavController
 import com.singularityindonesia.opendaimon.lib.component.HeaderPage
-import com.singularityindonesia.opendaimon.shell.protocol.ProtocolPlot
 
 @Composable
 fun SystemActivity(
