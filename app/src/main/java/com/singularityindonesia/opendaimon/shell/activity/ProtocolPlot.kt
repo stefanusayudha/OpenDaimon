@@ -3,6 +3,7 @@ package com.singularityindonesia.opendaimon.shell.activity
 import androidx.compose.material3.Text
 import androidx.compose.runtime.Composable
 import androidx.compose.ui.Modifier
+import androidx.navigation.NavGraphBuilder
 import androidx.navigation.NavHostController
 import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
@@ -17,18 +18,37 @@ fun ProtocolPlot(
     NavHost(
         modifier = modifier,
         navController = controller,
-        startDestination = path.takeIf { it.isNotBlank() } ?: "home"
+        startDestination = path.takeIf { it.isNotBlank() } ?: ProtocolHomeRoute.ROUTE
     ) {
-        composable(
-            route = "home"
-        ) {
-            Text("Protocol Home Page")
-        }
+        ProtocolHomeRoute(this)
+        ScanProtocolRoute(this)
+    }
+}
 
-        composable(
-            route = "scan"
-        ) {
-            ScanProtocolScene()
+object ProtocolHomeRoute {
+    val ROUTE = "protocol/home"
+
+    operator fun invoke(navGraphBuilder: NavGraphBuilder) {
+        with(navGraphBuilder) {
+            composable(
+                route = ROUTE
+            ) {
+                Text("Protocol Home Page")
+            }
+        }
+    }
+}
+
+object ScanProtocolRoute {
+    val ROUTE = "protocol/scan"
+
+    operator fun invoke(navGraphBuilder: NavGraphBuilder) {
+        with(navGraphBuilder) {
+            composable(
+                route = ROUTE
+            ) {
+                ScanProtocolScene()
+            }
         }
     }
 }

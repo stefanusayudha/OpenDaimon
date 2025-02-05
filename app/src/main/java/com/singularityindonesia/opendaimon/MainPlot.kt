@@ -6,8 +6,9 @@ import androidx.navigation.compose.NavHost
 import androidx.navigation.compose.composable
 import androidx.navigation.compose.rememberNavController
 import androidx.navigation.navArgument
-import com.singularityindonesia.opendaimon.shell.activity.HomeActivity
+import com.singularityindonesia.opendaimon.shell.pane.HomePane
 import com.singularityindonesia.opendaimon.shell.activity.ProtocolActivity
+import com.singularityindonesia.opendaimon.shell.activity.ScanProtocolRoute
 import com.singularityindonesia.opendaimon.shell.activity.SplashActivity
 import com.singularityindonesia.opendaimon.shell.activity.SystemActivity
 
@@ -30,9 +31,9 @@ fun MainPlot() {
         composable(
             route = "home"
         ) {
-            HomeActivity(
+            HomePane(
                 goToScanProtocol = {
-                    controller.navigate("protocol/scan")
+                    controller.navigate(ScanProtocolRoute.ROUTE)
                 },
                 goToNeuronGraph = {
                     controller.navigate("system/neuron-graph")
